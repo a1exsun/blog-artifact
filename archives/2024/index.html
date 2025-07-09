@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2024 | Alex Sun Blog</title><meta name="author" content="Alex Sun,me@xsun.work"><meta name="copyright" content="Alex Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Frontend &amp; DevOps Engineer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2024">
+<meta property="og:url" content="http://xsun.work/archives/2024/">
+<meta property="og:site_name" content="Alex Sun Blog">
+<meta property="og:description" content="Frontend &amp; DevOps Engineer">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://xsun.work/img/avatar.jpeg">
+<meta property="article:author" content="Alex Sun">
+<meta property="article:tag" content="frontend,web,devops,javascript,js,typescript,ts,scrum">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xsun.work/img/avatar.jpeg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://xsun.work/archives/2024/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/logo.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/logo144.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/logo144.png"/><link rel="mask-icon" href="/img/pwa/logo.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 17
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;03dcf6db28f54759abb2aa84ff0901e5&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Alex Sun","link":"Link: ","source":"Source: Alex Sun Blog","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#D2CFCA","bgDark":"#2d3035","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2024',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'archive'
+}</script><link href='https://fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'><link rel="stylesheet" type="text/css" href="/css/self.css"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Alex Sun Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/img/archive.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">2024</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">All Articles - 8</div><div class="article-sort"><div class="article-sort-item year">2024</div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/za502868/" title="How to Update Teamcenter BMIDE"><img src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241211230534897.png" alt="How to Update Teamcenter BMIDE" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-11T14:31:15.000Z" title="Created 2024-12-11 22:31:15">2024-12-11</time></div><a class="article-sort-item-title" href="/posts/za502868/" title="How to Update Teamcenter BMIDE">How to Update Teamcenter BMIDE</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/6297e95e/" title="Creating a Custom Lyrics Display Widget in BetterTouchTool"><img src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206020516639.jpg" alt="Creating a Custom Lyrics Display Widget in BetterTouchTool" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-05T17:53:38.000Z" title="Created 2024-12-06 01:53:38">2024-12-06</time></div><a class="article-sort-item-title" href="/posts/6297e95e/" title="Creating a Custom Lyrics Display Widget in BetterTouchTool">Creating a Custom Lyrics Display Widget in BetterTouchTool</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/bc939568/" title="BetterTouchTool Best Practices"><img src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206015235667.jpg" alt="BetterTouchTool Best Practices" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-05T17:33:17.000Z" title="Created 2024-12-06 01:33:17">2024-12-06</time></div><a class="article-sort-item-title" href="/posts/bc939568/" title="BetterTouchTool Best Practices">BetterTouchTool Best Practices</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/dd126a4b/" title="Publish your intranet services to the public network - use FRP for network penetration"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705301049155.jpg" alt="Publish your intranet services to the public network - use FRP for network penetration" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-15T06:34:41.000Z" title="Created 2024-01-15 14:34:41">2024-01-15</time></div><a class="article-sort-item-title" href="/posts/dd126a4b/" title="Publish your intranet services to the public network - use FRP for network penetration">Publish your intranet services to the public network - use FRP for network penetration</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/4bbb0782/" title="Connecting to GitHub with SSH"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705312535828.png" alt="Connecting to GitHub with SSH" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-10T14:18:55.000Z" title="Created 2024-01-10 22:18:55">2024-01-10</time></div><a class="article-sort-item-title" href="/posts/4bbb0782/" title="Connecting to GitHub with SSH">Connecting to GitHub with SSH</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/c9fe5e28/" title="Hexo adds PWA Web App support by Butterfly Theme"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1704782623202.jpg" alt="Hexo adds PWA Web App support by Butterfly Theme" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-09T03:37:45.000Z" title="Created 2024-01-09 11:37:45">2024-01-09</time></div><a class="article-sort-item-title" href="/posts/c9fe5e28/" title="Hexo adds PWA Web App support by Butterfly Theme">Hexo adds PWA Web App support by Butterfly Theme</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/c9954876/" title="Butterfly - Hexo theme installation and configuration"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1704718063078.jpg" alt="Butterfly - Hexo theme installation and configuration" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-08T12:01:41.000Z" title="Created 2024-01-08 20:01:41">2024-01-08</time></div><a class="article-sort-item-title" href="/posts/c9954876/" title="Butterfly - Hexo theme installation and configuration">Butterfly - Hexo theme installation and configuration</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/posts/6f34bf22/" title="Create a personal blog with Hexo"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1704701475952.jpg" alt="Create a personal blog with Hexo" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-08T07:25:45.000Z" title="Created 2024-01-08 15:25:45">2024-01-08</time></div><a class="article-sort-item-title" href="/posts/6f34bf22/" title="Create a personal blog with Hexo">Create a personal blog with Hexo</a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Alex Sun</div><div class="author-info-description">Frontend & DevOps Engineer</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="mailto:me@xsun.work"><i class="fas fa-envelope"></i><span>Email Me Directly</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://www.youtube.com/@a1ex5un" rel="external nofollow noreferrer" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a><a class="social-icon" href="https://github.com/a1exsun" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://x.com/a1ex5un" rel="external nofollow noreferrer" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="https://www.linkedin.com/in/x-sun-b31804255/" rel="external nofollow noreferrer" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="https://discord.gg/aTmfxc9JtA" rel="external nofollow noreferrer" target="_blank" title="Discord"><i class="fab fa-discord"></i></a><a class="social-icon" href="https://space.bilibili.com/11693168" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5c8df8e4000000001100b42e" rel="external nofollow noreferrer" target="_blank" title="Xiaohongshu"><i class="fas fa-book"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAJGjdQUA3h076kubA6yzB-DUjEZU_YpKkT5gWk8yA9Es" rel="external nofollow noreferrer" target="_blank" title="Douyin"><i class="fab fa-tiktok"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/707751bc/" title="Learnify - Conversation History - Hand mode behavior and hover issue"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/cursor-prompts.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Conversation History - Hand mode behavior and hover issue"/></a><div class="content"><a class="title" href="/posts/707751bc/" title="Learnify - Conversation History - Hand mode behavior and hover issue">Learnify - Conversation History - Hand mode behavior and hover issue</a><time datetime="2025-07-09T10:27:48.979Z" title="Updated 2025-07-09 18:27:48">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Tool Switching Mechanism"/></a><div class="content"><a class="title" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism">Learnify - Tool Switching Mechanism</a><time datetime="2025-07-09T10:15:17.435Z" title="Updated 2025-07-09 18:15:17">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/aca9ee12/" title="Learnify - PanTool Enhancement Implementation Guide"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - PanTool Enhancement Implementation Guide"/></a><div class="content"><a class="title" href="/posts/aca9ee12/" title="Learnify - PanTool Enhancement Implementation Guide">Learnify - PanTool Enhancement Implementation Guide</a><time datetime="2025-07-09T10:13:24.042Z" title="Updated 2025-07-09 18:13:24">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Tool Switching Mechanism"/></a><div class="content"><a class="title" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism">Learnify - Tool Switching Mechanism</a><time datetime="2025-07-09T10:12:24.548Z" title="Updated 2025-07-09 18:12:24">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b43d01ac/" title="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution"/></a><div class="content"><a class="title" href="/posts/b43d01ac/" title="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution">Learnify - Hand Mode Hover Functionality Issue Analysis and Solution</a><time datetime="2025-07-09T10:11:50.967Z" title="Updated 2025-07-09 18:11:50">2025-07-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cloud/"><span class="card-category-list-name">Cloud</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DevOps/"><span class="card-category-list-name">DevOps</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web/"><span class="card-category-list-name">Web</span><span class="card-category-list-count">13</span></a></li>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/07/">
+            <span class="card-archive-list-date">
+              July 2025
+            </span>
+            <span class="card-archive-list-count">10</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              December 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/01/">
+            <span class="card-archive-list-date">
+              January 2024
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">18</div></div><div class="webinfo-item"><div class="item-name">Total Word Count :</div><div class="item-count">18.3k</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-09T10:28:35.350Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2023 - 2025 By Alex Sun</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

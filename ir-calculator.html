@@ -1,0 +1,196 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- import CSS -->
+    <link href="https://unpkg.com/element-plus/dist/index.css" rel="stylesheet">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+    <title>Equivalent principal and interest rate calculator</title>
+</head>
+<body>
+<div id="app">
+    <el-form :model="form" label-width="180px">
+        <el-form-item label="Total Loan Amount">
+            <el-input v-model="form.loanAmount"/>
+        </el-form-item>
+        <el-form-item label="Total Loan Periods">
+            <el-input v-model="form.loanPeriods"/>
+        </el-form-item>
+        <el-form-item label="Periods You Want to Use">
+            <el-input v-model="form.usedPeriods"/>
+        </el-form-item>
+        <el-form-item label="Monthly Interest">
+            <el-input v-model="form.interestAmount"/>
+        </el-form-item>
+        <el-form-item>
+            <el-button @click="onSubmit" type="primary">Calculate</el-button>
+        </el-form-item>
+        <el-form-item label="Effective Annual Interest">
+            <div>{{ result }} %</div>
+        </el-form-item>
+        <el-form-item label="Interest Trends">
+        </el-form-item>
+    </el-form>
+    <div id="main" style="width: 97vw;height:400px;margin-top: -53px"></div>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <span style="position: fixed; bottom: 30px; width: 100%; text-align: center; font-size: 13px; color: grey">v0.1.2</span>
+</div>
+<script>
+    const App = {
+        data() {
+            return {
+                form: {
+                    loanAmount: 100000,
+                    loanPeriods: 60,
+                    usedPeriods: 48,
+                    interestAmount: 200,
+                },
+                result: 'Calculating...',
+                xData: [],
+                yData: [],
+            };
+        },
+        methods: {
+            onSubmit() {
+                let loanAmount = Number(this.form.loanAmount);
+                let loanPeriods = Number(this.form.loanPeriods);
+                let usedPeriods = Number(this.form.usedPeriods);
+                let interestAmount = Number(this.form.interestAmount);
+                let loanPrincipal = loanAmount / loanPeriods;
+
+                this.xData = [];
+                for (let i = 0; i < usedPeriods; i++) {
+                    this.xData.push("Period " + (i + 1));
+                }
+
+                this.yData = [];
+                for (let i = 0; i < usedPeriods; i++) {
+                    let iPeriod = ((interestAmount / (loanAmount - i * loanPrincipal)) * 12 * 100).toFixed(5);
+                    this.yData.push(iPeriod);
+                }
+
+                function IRRCalc(CArray) {
+
+                    min = 0.0;
+                    max = 1.0;
+                    do {
+                        guest = (min + max) / 2;
+                        NPV = 0;
+                        for (var j = 0; j < CArray.length; j++) {
+                            NPV += CArray[j] / Math.pow((1 + guest), j);
+                        }
+                        if (NPV > 0) {
+                            min = guest;
+                        } else {
+                            max = guest;
+                        }
+                    } while (Math.abs(NPV) > 0.000001);
+                    return guest * 100;
+                }
+
+                // 创建irr函数
+                function calculateRealRate(loanAmount, loanPeriods, usedPeriods, interestAmount) {
+                    // var cashflows = [-30000,5240,5240,5240,5240,5240,5240];
+                    // 16.2744699453%
+
+                    // var cashflows = [-100000];
+                    // for (var i=0; i<24; i++) {
+                    //   cashflows.push(1867);
+                    // }
+                    // cashflows.push(100000-1667*24);
+
+                    let cashflows = [0 - loanAmount];
+                    for (var i = 0; i < usedPeriods; i++) {
+                        cashflows.push(loanPrincipal + interestAmount);
+                    }
+                    if (loanPeriods > usedPeriods) {
+                        let lastPeriod = loanAmount - loanPrincipal * usedPeriods
+                        // 给cashflows数组的最后一个元素+上lastPeriod
+                        cashflows[cashflows.length - 1] = cashflows[cashflows.length - 1] + lastPeriod;
+                    }
+                    // debugger;
+                    // 将数组中的每个元素转换为数字，求和，如果大于0则进行IRRCalc计算，否则直接返回NaN
+                    let sum = cashflows.map(Number).reduce((a, b) => a + b, 0);
+                    if (sum <= 0) {
+                        return -1;
+                    } else {
+                        return (IRRCalc(cashflows) * 12);
+                    }
+                }
+
+                let result = calculateRealRate(loanAmount, loanPeriods, usedPeriods, interestAmount);
+
+                if (isNaN(result) || result === Infinity || result === -Infinity || result < 0) {
+                    this.result = 'Please enter the correct number';
+                } else {
+                    this.result = result.toFixed(10);
+                    this.refreshTable();
+                }
+            },
+            refreshTable() {
+                const myChart = echarts.init(document.getElementById('main'));
+                // 指定图表的配置项和数据
+                option = {
+                    xAxis: {
+                        type: 'category',
+                        data: this.xData
+                        // data: [1,2,3]
+                    },
+                    yAxis: {
+                        type: 'value',
+                        min: function (value) {
+                            return (value.min - 0.2).toFixed(5);
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    series: [
+                        {
+                            showSymbol: true,
+                            data: this.yData,
+                            markLine: {
+                                symbolSize: 0,
+                                label: {
+                                    show: true,
+                                    position: 'insideMiddleBottom',
+                                    formatter: '{b}: {c}%'
+                                },
+                                lineStyle: {
+                                    width: 1.6,
+                                    color: 'red',
+                                    type: 'dashed',
+                                    cap: 'butt'
+                                },
+                                data: [
+                                    {yAxis: (Number(this.result).toFixed(5)), name: 'Annual Interest Rate',},
+                                ]
+                            },
+                            type: 'line'
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            }
+        },
+        mounted() {
+            // 基于准备好的dom，初始化echarts实例
+        }
+    };
+
+    const app = Vue.createApp(App);
+    app.use(ElementPlus);
+    app.mount("#app");
+</script>
+</body>
+</html>

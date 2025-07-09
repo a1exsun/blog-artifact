@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>在BetterTouchTool自定义一个歌词显示控件 | Alex Sun Blog</title><meta name="author" content="Alex Sun,me@xsun.work"><meta name="copyright" content="Alex Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Touchbar Lyric 参考官方文档：https:&#x2F;&#x2F;github.com&#x2F;ChenghaoMou&#x2F;touchbar-lyric  安装 python安装过程不展开介绍了，可以使用brew、python.org官网、pyenv、conda等工具安装。 ⚠️需要注意的问题：  3.9.x、3.10.x版本会在控件中输出报错信息：  1NotOpenSSLWarning: urllib3 v2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在BetterTouchTool自定义一个歌词显示控件">
+<meta property="og:url" content="http://xsun.work/zh-CN/posts/6297e95e/">
+<meta property="og:site_name" content="Alex Sun Blog">
+<meta property="og:description" content="Touchbar Lyric 参考官方文档：https:&#x2F;&#x2F;github.com&#x2F;ChenghaoMou&#x2F;touchbar-lyric  安装 python安装过程不展开介绍了，可以使用brew、python.org官网、pyenv、conda等工具安装。 ⚠️需要注意的问题：  3.9.x、3.10.x版本会在控件中输出报错信息：  1NotOpenSSLWarning: urllib3 v2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206020516639.jpg">
+<meta property="article:published_time" content="2024-12-05T17:53:38.000Z">
+<meta property="article:modified_time" content="2025-07-09T07:59:59.876Z">
+<meta property="article:author" content="Alex Sun">
+<meta property="article:tag" content="frontend,web,devops,javascript,js,typescript,ts,scrum">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206020516639.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "在BetterTouchTool自定义一个歌词显示控件",
+  "url": "http://xsun.work/zh-CN/posts/6297e95e/",
+  "image": "https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206020516639.jpg",
+  "datePublished": "2024-12-05T17:53:38.000Z",
+  "dateModified": "2025-07-09T07:59:59.876Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Alex Sun",
+      "url": "http://xsun.work/zh-CN"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/zh-CN/img/favicon.png"><link rel="canonical" href="http://xsun.work/zh-CN/posts/6297e95e/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/zh-CN/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/zh-CN/img/pwa/logo.png"/><link rel="icon" type="image/png" sizes="32x32" href="/zh-CN/img/pwa/logo144.png"/><link rel="icon" type="image/png" sizes="16x16" href="/zh-CN/img/pwa/logo144.png"/><link rel="mask-icon" href="/zh-CN/img/pwa/logo.png" color="#5bbad5"/><link rel="stylesheet" href="/zh-CN/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 17
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;03dcf6db28f54759abb2aa84ff0901e5&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/zh-CN/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Alex Sun","link":"链接: ","source":"来源: Alex Sun Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#D2CFCA","bgDark":"#2d3035","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '在BetterTouchTool自定义一个歌词显示控件',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link href='https://fonts.googleapis.com/css?family=Zhi Mang Xing' rel='stylesheet'><link rel="stylesheet" type="text/css" href="/zh-CN/css/self.css"><script src="/js/inject.js"></script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/zh-CN/atom.xml" title="Alex Sun Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/zh-CN/img/avatar.jpeg" onerror="this.onerror=null;this.src='/zh-CN/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/zh-CN/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/zh-CN/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/zh-CN/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/zh-CN/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> 目录</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/zh-CN/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/zh-CN/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/zh-CN/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> 开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/zh-CN/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> 人工智能</span></a></li><li><a class="site-page child" href="/zh-CN/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> 前端开发</span></a></li><li><a class="site-page child" href="/zh-CN/categories/Server/"><i class="fa-fw fas fa-server"></i><span> 后端开发</span></a></li><li><a class="site-page child" href="/zh-CN/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> 云技术</span></a></li><li><a class="site-page child" href="/zh-CN/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> 开发运维</span></a></li><li><a class="site-page child" href="/zh-CN/archives/"><i class="fa-fw fas fa-code"></i><span> 全部</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> 作品</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/zh-CN/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> 真实利率计算器</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive示例</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/zh-CN/about-me/"><i class="fa-fw fas fa-portrait"></i><span> 简历</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> 语言</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/"><i class="fa-fw fas fa-e"></i><span> English</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206020516639.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/zh-CN/"><img class="site-icon" src="/zh-CN/img/logo.png" alt="Logo"></a><a class="nav-page-title" href="/zh-CN/"><span class="site-name">在BetterTouchTool自定义一个歌词显示控件</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/zh-CN/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> 目录</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/zh-CN/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/zh-CN/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/zh-CN/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> 开发</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/zh-CN/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> 人工智能</span></a></li><li><a class="site-page child" href="/zh-CN/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> 前端开发</span></a></li><li><a class="site-page child" href="/zh-CN/categories/Server/"><i class="fa-fw fas fa-server"></i><span> 后端开发</span></a></li><li><a class="site-page child" href="/zh-CN/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> 云技术</span></a></li><li><a class="site-page child" href="/zh-CN/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> 开发运维</span></a></li><li><a class="site-page child" href="/zh-CN/archives/"><i class="fa-fw fas fa-code"></i><span> 全部</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> 作品</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/zh-CN/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> 真实利率计算器</span></a></li><li><a class="site-page child" href="/zh-CN/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive示例</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/zh-CN/about-me/"><i class="fa-fw fas fa-portrait"></i><span> 简历</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> 语言</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/"><i class="fa-fw fas fa-e"></i><span> English</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">在BetterTouchTool自定义一个歌词显示控件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-05T17:53:38.000Z" title="发表于 2024-12-06 01:53:38">2024-12-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-09T07:59:59.876Z" title="更新于 2025-07-09 15:59:59">2025-07-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">237</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-07-09 15:59:59&quot;}" hidden></div><h2 id="Touchbar-Lyric"><a href="#Touchbar-Lyric" class="headerlink" title="Touchbar Lyric"></a>Touchbar Lyric</h2><blockquote>
+<p>参考官方文档：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/ChenghaoMou/touchbar-lyric">https://github.com/ChenghaoMou/touchbar-lyric</a></p>
+</blockquote>
+<h3 id="安装-python"><a href="#安装-python" class="headerlink" title="安装 python"></a>安装 python</h3><p>安装过程不展开介绍了，可以使用brew、python.org官网、pyenv、conda等工具安装。</p>
+<p>⚠️需要注意的问题：</p>
+<ul>
+<li>3.9.x、3.10.x版本会在控件中输出报错信息：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the <span class="string">&#x27;ssl&#x27;</span> module is compiled with <span class="string">&#x27;LibreSSL 2.8.3&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解决方案：最终使用的是3.12.0</li>
+</ul>
+<h3 id="安装-touchbar-lyric"><a href="#安装-touchbar-lyric" class="headerlink" title="安装 touchbar_lyric"></a>安装 touchbar_lyric</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install touchbar_lyric --upgrade</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试-touchbar-lyric"><a href="#测试-touchbar-lyric" class="headerlink" title="测试 touchbar_lyric"></a>测试 touchbar_lyric</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m touchbar_lyric --app Music</span><br></pre></td></tr></table></figure>
+
+<h2 id="在BetterTouchTool中配置"><a href="#在BetterTouchTool中配置" class="headerlink" title="在BetterTouchTool中配置"></a>在BetterTouchTool中配置</h2><ol>
+<li>自定义菜单栏，选择Shell脚本 &#x2F; 任务 widget</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206015650143.png"></p>
+<ol start="2">
+<li>填写脚本配置：</li>
+</ol>
+<ul>
+<li>启动路径：<code>/bin/bash</code></li>
+<li>参数：<code>-c</code></li>
+<li>环境变量：在你本机的Terminal中输入<code>echo $PATH</code>，然后复制输出内容到此处，格式类似于：  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin...</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206015752477.png"></p>
+<h2 id="个性化（可选）"><a href="#个性化（可选）" class="headerlink" title="个性化（可选）"></a>个性化（可选）</h2><p>空白歌词显示「No Lyric」</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output=$(python3 -m touchbar_lyric --app Music)</span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$output</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;No Lyric&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$output</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://xsun.work/zh-CN">Alex Sun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://xsun.work/zh-CN/posts/6297e95e/">http://xsun.work/zh-CN/posts/6297e95e/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://xsun.work/zh-CN" target="_blank">Alex Sun Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206020516639.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/zh-CN/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/zh-CN/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/zh-CN/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/zh-CN/img/alipay.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/zh-CN/posts/za502868/" title="如何更新Teamcenter BMIDE"><img class="cover" src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241211230534897.png" onerror="onerror=null;src='/zh-CN/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">如何更新Teamcenter BMIDE</div></div><div class="info-2"><div class="info-item-1">如何更新Teamcenter BIMDE更新数据模型1. 打开Teamcenter Environment Manager2.选择「配置管理器」 3. 选择「维护现有配置」 4. 选择您的现有配置 5. 选择「更新数据库（完整模型）」 ⚠️更新前请关闭所有TC服务，包括两层客户端、四层客户端、AWC服务端等等   6. 输入用户名密码 7. 选择更新模板 选择 「浏览」 文件  文件类型选择 「所有文件」 进入需要更新的数据模型所在路径，选择media_teamcenter_xxx.xml文件   8. 确认 ⚠️务必在此确认您的上述步骤操作正确，并已停止所有TC服务   9. （可选）虚拟机备份通常在我遇到的Siemens Teamcenter项目中，开发环境都是实施团队通过VMWare虚拟机提供的。 所以当更新开始前，我通常会打一个虚拟机快照。 遇到更新错误时，恢复快照，联系数据模型提供人即可。  主要是根据过去的情况，更新错误有时会导致数据模型异常（或你可以理解成损坏），就算你中断更新，Teamcenter运行时仍然会遇到很多问题，就很烦。  10. 更新完成如果你看到这个...</div></div></div></a><a class="pagination-related" href="/zh-CN/posts/bc939568/" title="BetterTouchTool最佳实践"><img class="cover" src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206015235667.jpg" onerror="onerror=null;src='/zh-CN/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">BetterTouchTool最佳实践</div></div><div class="info-2"><div class="info-item-1">窗口置顶开启方法 效果 自定义吸附区开启方法 新建吸附区域    设置捕捉区域   效果 自定义刘海屏个人推荐 播放器     天气     歌词  详见这篇教程：TODO 效果 快捷键 Command + R 窗口置顶    Command + E 窗口自定义吸附     配合置顶的iPhone镜像   Command + Shift + R 窗口最大化   </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Touchbar-Lyric"><span class="toc-text">Touchbar Lyric</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-python"><span class="toc-text">安装 python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-touchbar-lyric"><span class="toc-text">安装 touchbar_lyric</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-touchbar-lyric"><span class="toc-text">测试 touchbar_lyric</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8BetterTouchTool%E4%B8%AD%E9%85%8D%E7%BD%AE"><span class="toc-text">在BetterTouchTool中配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AA%E6%80%A7%E5%8C%96%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">个性化（可选）</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2023 - 2025 By Alex Sun</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">簡</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">簡</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/zh-CN/js/utils.js"></script><script src="/zh-CN/js/main.js"></script><script src="/zh-CN/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

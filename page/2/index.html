@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Alex Sun Blog - Frontend &amp; DevOps Engineer</title><meta name="author" content="Alex Sun,me@xsun.work"><meta name="copyright" content="Alex Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Frontend &amp; DevOps Engineer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alex Sun Blog">
+<meta property="og:url" content="http://xsun.work/page/2/">
+<meta property="og:site_name" content="Alex Sun Blog">
+<meta property="og:description" content="Frontend &amp; DevOps Engineer">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://xsun.work/img/avatar.jpeg">
+<meta property="article:author" content="Alex Sun">
+<meta property="article:tag" content="frontend,web,devops,javascript,js,typescript,ts,scrum">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xsun.work/img/avatar.jpeg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://xsun.work/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/logo.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/logo144.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/logo144.png"/><link rel="mask-icon" href="/img/pwa/logo.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 17
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;03dcf6db28f54759abb2aa84ff0901e5&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Alex Sun","link":"Link: ","source":"Source: Alex Sun Blog","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#D2CFCA","bgDark":"#2d3035","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Alex Sun Blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link href='https://fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'><link rel="stylesheet" type="text/css" href="/css/self.css"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Alex Sun Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Alex Sun Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://www.youtube.com/@a1ex5un" rel="external nofollow noreferrer" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a><a class="social-icon" href="https://github.com/a1exsun" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://x.com/a1ex5un" rel="external nofollow noreferrer" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="https://www.linkedin.com/in/x-sun-b31804255/" rel="external nofollow noreferrer" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="https://discord.gg/aTmfxc9JtA" rel="external nofollow noreferrer" target="_blank" title="Discord"><i class="fab fa-discord"></i></a><a class="social-icon" href="https://space.bilibili.com/11693168" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5c8df8e4000000001100b42e" rel="external nofollow noreferrer" target="_blank" title="Xiaohongshu"><i class="fas fa-book"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAJGjdQUA3h076kubA6yzB-DUjEZU_YpKkT5gWk8yA9Es" rel="external nofollow noreferrer" target="_blank" title="Douyin"><i class="fab fa-tiktok"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/posts/za502868/" title="How to Update Teamcenter BMIDE"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241211230534897.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="How to Update Teamcenter BMIDE"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/za502868/" title="How to Update Teamcenter BMIDE">How to Update Teamcenter BMIDE</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-12-11T14:31:15.000Z" title="Created 2024-12-11 22:31:15">2024-12-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-08T05:33:24.664Z" title="Updated 2025-07-08 13:33:24">2025-07-08</time></span></div><div class="content">How to Update Teamcenter BMIDEUpdate Data Model1. Open Teamcenter Environment Manager2. Select &quot;Configuration Manager&quot; 3. Select &quot;Maintain Existing Configuration&quot; 4. Select Your Existing Configuration 5. Select &quot;Update Database (Full Model)&quot; ⚠️Please close all TC services before updating, including two-tier clients, four-tier clients, AWC server, etc.   6. Enter Username and Password 7. Select Update Template Select &quot;Browse&quot; file  Set file type to &quot...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/6297e95e/" title="Creating a Custom Lyrics Display Widget in BetterTouchTool"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206020516639.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Creating a Custom Lyrics Display Widget in BetterTouchTool"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/6297e95e/" title="Creating a Custom Lyrics Display Widget in BetterTouchTool">Creating a Custom Lyrics Display Widget in BetterTouchTool</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-12-05T17:53:38.000Z" title="Created 2024-12-06 01:53:38">2024-12-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-09T07:59:59.878Z" title="Updated 2025-07-09 15:59:59">2025-07-09</time></span></div><div class="content">Touchbar Lyric Reference official documentation: https://github.com/ChenghaoMou/touchbar-lyric  Install PythonThe installation process won&#39;t be detailed here, you can use tools like brew, python.org official website, pyenv, conda, etc. for installation. ⚠️ Issues to note:  Python versions 3.9.x and 3.10.x will output error messages in the widget:  1NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the &#x27;ssl&#x27; module is compiled with &#x27;LibreSSL 2.8.3&#x27;  ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/bc939568/" title="BetterTouchTool Best Practices"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241206015235667.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BetterTouchTool Best Practices"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/bc939568/" title="BetterTouchTool Best Practices">BetterTouchTool Best Practices</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-12-05T17:33:17.000Z" title="Created 2024-12-06 01:33:17">2024-12-06</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-08T05:34:01.018Z" title="Updated 2025-07-08 13:34:01">2025-07-08</time></span></div><div class="content">Window Always on TopSetup Method Effect Custom Snap AreasSetup Method Create New Snap Area    Configure Snap Region   Effect Custom Notch AreaPersonal Recommendations Media Player     Weather     Lyrics  See this tutorial: TODO Effect Shortcuts Command + R Window Always on Top    Command + E Window Custom Snap     Works with pinned iPhone mirroring   Command + Shift + R Window Maximize   </div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/dd126a4b/" title="Publish your intranet services to the public network - use FRP for network penetration"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705301049155.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Publish your intranet services to the public network - use FRP for network penetration"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/dd126a4b/" title="Publish your intranet services to the public network - use FRP for network penetration">Publish your intranet services to the public network - use FRP for network penetration</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-15T06:34:41.000Z" title="Created 2024-01-15 14:34:41">2024-01-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-07T12:39:07.923Z" title="Updated 2025-07-07 20:39:07">2025-07-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/DevOps/">DevOps</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Frp/">Frp</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Network/">Network</a></span></div><div class="content"> Official documentation：https://gofrp.org/en/docs   System RequirementsAs it is written in Go language, the system requirements are consistent with the latest Go language requirements for systems and platforms. For details, please refer to Golang System requirements. DownloadYou can download the latest version of the client and server binaries from the Release page on GitHub. All files are packaged in a zip file, which also includes a complete set of configuration parameter descriptions. Depl...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/4bbb0782/" title="Connecting to GitHub with SSH"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705312535828.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Connecting to GitHub with SSH"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/4bbb0782/" title="Connecting to GitHub with SSH">Connecting to GitHub with SSH</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-10T14:18:55.000Z" title="Created 2024-01-10 22:18:55">2024-01-10</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-07T12:39:07.915Z" title="Updated 2025-07-07 20:39:07">2025-07-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Cloud/">Cloud</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/GitHub/">GitHub</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Authentication/">Authentication</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/SSH/">SSH</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Cloud/">Cloud</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Git/">Git</a></span></div><div class="content">  Github official documentation - Connecting to GitHub with SSH：https://docs.github.com/en/authentication/connecting-to-github-with-ssh  What is Github SSH ConnectionWhen managing Git projects, login authentication is required to perform Clone, Commit, Pull, Push, etc. There are two ways to login:  HTTPS: Data is transmitted in an encrypted way. Login is verified through account password. SSH: Provides a secure channel over an insecure network. Login is verified through SSH key.  The main dif...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/c9fe5e28/" title="Hexo adds PWA Web App support by Butterfly Theme"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1704782623202.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo adds PWA Web App support by Butterfly Theme"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/c9fe5e28/" title="Hexo adds PWA Web App support by Butterfly Theme">Hexo adds PWA Web App support by Butterfly Theme</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-09T03:37:45.000Z" title="Created 2024-01-09 11:37:45">2024-01-09</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-08T05:23:56.244Z" title="Updated 2025-07-08 13:23:56">2025-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Hexo/">Hexo</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Blog/">Blog</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/PWA/">PWA</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Web-App/">Web App</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Web/">Web</a></span></div><div class="content">This solution is based on the Butterfly theme for Hexo, for details see Butterfly - Hexo Theme Installation and Configuration What is PWAProgressive Web Apps (PWA) are applications built using web platform technologies, but they provide a user experience akin to an app specific to a platform. Like websites, PWAs can run on multiple platforms and devices with a single code base. Like an app specific to a platform, they can be installed on devices, run offline and in the background, and integra...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/posts/c9954876/" title="Butterfly - Hexo theme installation and configuration"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1704718063078.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Butterfly - Hexo theme installation and configuration"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/c9954876/" title="Butterfly - Hexo theme installation and configuration">Butterfly - Hexo theme installation and configuration</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-08T12:01:41.000Z" title="Created 2024-01-08 20:01:41">2024-01-08</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-07T12:39:59.484Z" title="Updated 2025-07-07 20:39:59">2025-07-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Hexo/">Hexo</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Blog/">Blog</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Web/">Web</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Butterfly/">Butterfly</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Theme/">Theme</a></span></div><div class="content"> Theme SelectionThe official website offers over 400 themes for selection (https://hexo.io/themes/). However, since Hexo itself is just a static web page framework driven by Markdown documents, a lot of functionalities are actually implemented by theme authors and plugin authors, leading to significant differences between themes. Butterfly Butterfly is what I consider a standout among Hexo themes:  This project has been updated since 2019 and is still being updated stably, with its latest rel...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/posts/6f34bf22/" title="Create a personal blog with Hexo"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1704701475952.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Create a personal blog with Hexo"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/6f34bf22/" title="Create a personal blog with Hexo">Create a personal blog with Hexo</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-08T07:25:45.000Z" title="Created 2024-01-08 15:25:45">2024-01-08</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-07T12:39:07.913Z" title="Updated 2025-07-07 20:39:07">2025-07-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Hexo/">Hexo</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Blog/">Blog</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Web/">Web</a></span></div><div class="content">  Official Documentation: https://hexo.io/docs/  PrerequisitesYou will need:  Node.js (12.0 or higher) Git  To check your environment, please enter the following commands and ensure you get similar return results: 12345678git -v# git version 2.xx.xnode -v# v18.xx.xnpm -v# 10.x.x  Initialize ProjectNavigate to the path where you want to store your blog source code and perform the following operations: 123hexo init &lt;folder&gt;cd &lt;folder&gt;npm install  After initialization, the directory ...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Alex Sun</div><div class="author-info-description">Frontend & DevOps Engineer</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="mailto:me@xsun.work"><i class="fas fa-envelope"></i><span>Email Me Directly</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://www.youtube.com/@a1ex5un" rel="external nofollow noreferrer" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a><a class="social-icon" href="https://github.com/a1exsun" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://x.com/a1ex5un" rel="external nofollow noreferrer" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="https://www.linkedin.com/in/x-sun-b31804255/" rel="external nofollow noreferrer" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="https://discord.gg/aTmfxc9JtA" rel="external nofollow noreferrer" target="_blank" title="Discord"><i class="fab fa-discord"></i></a><a class="social-icon" href="https://space.bilibili.com/11693168" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5c8df8e4000000001100b42e" rel="external nofollow noreferrer" target="_blank" title="Xiaohongshu"><i class="fas fa-book"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAJGjdQUA3h076kubA6yzB-DUjEZU_YpKkT5gWk8yA9Es" rel="external nofollow noreferrer" target="_blank" title="Douyin"><i class="fab fa-tiktok"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/707751bc/" title="Learnify - Conversation History - Hand mode behavior and hover issue"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/cursor-prompts.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Conversation History - Hand mode behavior and hover issue"/></a><div class="content"><a class="title" href="/posts/707751bc/" title="Learnify - Conversation History - Hand mode behavior and hover issue">Learnify - Conversation History - Hand mode behavior and hover issue</a><time datetime="2025-07-09T10:27:48.979Z" title="Updated 2025-07-09 18:27:48">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Tool Switching Mechanism"/></a><div class="content"><a class="title" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism">Learnify - Tool Switching Mechanism</a><time datetime="2025-07-09T10:15:17.435Z" title="Updated 2025-07-09 18:15:17">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/aca9ee12/" title="Learnify - PanTool Enhancement Implementation Guide"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - PanTool Enhancement Implementation Guide"/></a><div class="content"><a class="title" href="/posts/aca9ee12/" title="Learnify - PanTool Enhancement Implementation Guide">Learnify - PanTool Enhancement Implementation Guide</a><time datetime="2025-07-09T10:13:24.042Z" title="Updated 2025-07-09 18:13:24">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Tool Switching Mechanism"/></a><div class="content"><a class="title" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism">Learnify - Tool Switching Mechanism</a><time datetime="2025-07-09T10:12:24.548Z" title="Updated 2025-07-09 18:12:24">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b43d01ac/" title="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution"/></a><div class="content"><a class="title" href="/posts/b43d01ac/" title="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution">Learnify - Hand Mode Hover Functionality Issue Analysis and Solution</a><time datetime="2025-07-09T10:11:50.967Z" title="Updated 2025-07-09 18:11:50">2025-07-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cloud/"><span class="card-category-list-name">Cloud</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DevOps/"><span class="card-category-list-name">DevOps</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web/"><span class="card-category-list-name">Web</span><span class="card-category-list-count">13</span></a></li>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/07/">
+            <span class="card-archive-list-date">
+              July 2025
+            </span>
+            <span class="card-archive-list-count">10</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              December 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/01/">
+            <span class="card-archive-list-date">
+              January 2024
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">18</div></div><div class="webinfo-item"><div class="item-name">Total Word Count :</div><div class="item-count">18.3k</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-09T10:28:35.350Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2023 - 2025 By Alex Sun</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, {"startDelay":800,"typeSpeed":100,"backSpeed":20}))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["Two roads diverged in a wood, and I—","I took the one less traveled by,","And that has made all the difference.","...","Shall I compare thee to a summer's day?","Thou art more lovely and more temperate","...","Because I could not stop for Death –","He kindly stopped for me –","...","Do not go gentle into that good night,","Old age should burn and rave at close of day;","Rage, rage against the dying of the light.","...","I wandered lonely as a cloud","That floats on high o'er vales and hills,","When all at once I saw a crowd,","A host, of golden daffodils;","..."].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["Two roads diverged in a wood, and I—","I took the one less traveled by,","And that has made all the difference.","...","Shall I compare thee to a summer's day?","Thou art more lovely and more temperate","...","Because I could not stop for Death –","He kindly stopped for me –","...","Do not go gentle into that good night,","Old age should burn and rave at close of day;","Rage, rage against the dying of the light.","...","I wandered lonely as a cloud","That floats on high o'er vales and hills,","When all at once I saw a crowd,","A host, of golden daffodils;","..."])
+}
+typedJSFn.run(subtitleType)</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,52 @@
+:root {
+    --preloader-bg: #FFF;
+    --preloader-color: #000;
+    --mark-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"]:root {
+    --preloader-bg: #0D0D0D;
+    --preloader-color: #FFF;
+    --mark-bg: rgba(0, 0, 0, 0.1);
+}
+
+#site-info {
+    text-align: center;
+}
+
+#site-subtitle {
+    display: inline-block;
+}
+
+#subtitle {
+    font-family: Bad Script, -apple-system, system-ui, sans-serif;
+    white-space: nowrap;
+}
+
+#footer {
+    background-color: #FAFAFA;
+}
+
+#footer-wrap {
+    color: #888888;
+}
+
+#footer-wrap a {
+    color: #888888;
+}
+
+[data-theme="dark"] {
+    --mark-bg: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] #footer {
+    background-color: #121212;
+}
+
+#loading-box .spinner-box .configure-border-1 {
+    background: #CCC;
+}
+
+#loading-box .spinner-box .configure-border-2 {
+    background: #444;
+}

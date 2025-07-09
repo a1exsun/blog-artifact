@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        iframe {
+            width: 100%;
+            height: 43vh;
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    <button onclick="hideFrame(1)" style="color:grey; font-size: 2vh; margin-bottom: 10px; ">Hide / Show Frame 1
+    </button>
+    <iframe class="iframe1" src="https://chat.openai.com"></iframe>
+    <button onclick="hideFrame(2)" style="color:grey; font-size: 2vh; margin: 10px 0px; ">Hide / Show Frame 2
+    </button>
+    <iframe class="iframe2" src="https://chat.openai.com"></iframe>
+</div>
+<script>
+    function hideFrame(frameNum) {
+        // 根据frameNum，匹配对应className，获取对应的iframe
+        const targetFrame = document.getElementsByClassName('iframe' + frameNum)[0]
+        const display = targetFrame.style.display
+        console.log('iframe', 'iframe' + frameNum)
+        if (display === 'none') {
+            targetFrame.style.display = 'block'
+        } else {
+            targetFrame.style.display = 'none'
+        }
+    }
+</script>
+</body>
+</html>

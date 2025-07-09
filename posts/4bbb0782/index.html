@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Connecting to GitHub with SSH | Alex Sun Blog</title><meta name="author" content="Alex Sun,me@xsun.work"><meta name="copyright" content="Alex Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Github official documentation - Connecting to GitHub with SSH：https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;authentication&#x2F;connecting-to-github-with-ssh  What is Github SSH ConnectionWhen managing Git projects, login">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Connecting to GitHub with SSH">
+<meta property="og:url" content="http://xsun.work/posts/4bbb0782/">
+<meta property="og:site_name" content="Alex Sun Blog">
+<meta property="og:description" content="Github official documentation - Connecting to GitHub with SSH：https:&#x2F;&#x2F;docs.github.com&#x2F;en&#x2F;authentication&#x2F;connecting-to-github-with-ssh  What is Github SSH ConnectionWhen managing Git projects, login">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705312535828.png">
+<meta property="article:published_time" content="2024-01-10T14:18:55.000Z">
+<meta property="article:modified_time" content="2025-07-07T12:39:07.915Z">
+<meta property="article:author" content="Alex Sun">
+<meta property="article:tag" content="GitHub">
+<meta property="article:tag" content="Authentication">
+<meta property="article:tag" content="SSH">
+<meta property="article:tag" content="Cloud">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705312535828.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Connecting to GitHub with SSH",
+  "url": "http://xsun.work/posts/4bbb0782/",
+  "image": "https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705312535828.png",
+  "datePublished": "2024-01-10T14:18:55.000Z",
+  "dateModified": "2025-07-07T12:39:07.915Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Alex Sun",
+      "url": "http://xsun.work"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://xsun.work/posts/4bbb0782/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/logo.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/logo144.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/logo144.png"/><link rel="mask-icon" href="/img/pwa/logo.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 17
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;03dcf6db28f54759abb2aa84ff0901e5&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Alex Sun","link":"Link: ","source":"Source: Alex Sun Blog","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#D2CFCA","bgDark":"#2d3035","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Connecting to GitHub with SSH',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link href='https://fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'><link rel="stylesheet" type="text/css" href="/css/self.css"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Alex Sun Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"></a><a class="nav-page-title" href="/"><span class="site-name">Connecting to GitHub with SSH</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Connecting to GitHub with SSH</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-01-10T14:18:55.000Z" title="Created 2024-01-10 22:18:55">2024-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-07T12:39:07.915Z" title="Updated 2025-07-07 20:39:07">2025-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Cloud/">Cloud</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">884</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>5mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-07-07 20:39:07&quot;}" hidden></div><p><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705312535828.png" alt="1705312545735"></p>
+<blockquote>
+<p>Github official documentation - Connecting to GitHub with SSH：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh">https://docs.github.com/en/authentication/connecting-to-github-with-ssh</a></p>
+</blockquote>
+<h1 id="What-is-Github-SSH-Connection"><a href="#What-is-Github-SSH-Connection" class="headerlink" title="What is Github SSH Connection"></a>What is Github SSH Connection</h1><p>When managing Git projects, login authentication is required to perform Clone, Commit, Pull, Push, etc. There are two ways to login:</p>
+<ul>
+<li>HTTPS: Data is transmitted in an encrypted way. Login is verified through account password.</li>
+<li>SSH: Provides a secure channel over an insecure network. Login is verified through SSH key.</li>
+</ul>
+<p>The main differences between these two methods are:</p>
+<ul>
+<li>HTTPS does not require configuration, but it requires frequent input of account password in various scenarios.</li>
+<li>SSH configuration of keys is slightly more cumbersome, but subsequent use of the key allows login without an account password.</li>
+<li>SSH is more suited for executing git operations in scripts, as git login is an interactive command, and handling git login in scripts can be troublesome.</li>
+</ul>
+<h1 id="Generating-SSH-Key"><a href="#Generating-SSH-Key" class="headerlink" title="Generating SSH Key"></a>Generating SSH Key</h1><h2 id="Checking-Existing-SSH-Key"><a href="#Checking-Existing-SSH-Key" class="headerlink" title="Checking Existing SSH Key"></a>Checking Existing SSH Key</h2><p>On your local machine, you need to have an SSH Key to use ssh connection. To check for an existing SSH Key, open the terminal and enter the following command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -al ~/.ssh</span><br></pre></td></tr></table></figure>
+
+<p>If any SSH Keys are listed in the ssh directory, you can choose to use an existing SSH Key. However, for security reasons, it&#39;s always considered safe to create different SSH Keys for different applications&#x2F;connections, so that if one SSH Key is compromised, other connections remain secure.</p>
+<h2 id="Generating-SSH-Key-1"><a href="#Generating-SSH-Key-1" class="headerlink" title="Generating SSH Key"></a>Generating SSH Key</h2><ol>
+<li><p>Open the terminal and enter the ssh-keygen command:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;&lt;your email&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Then the following two lines will be displayed:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ Generating public/private rsa key pair.</span><br><span class="line">$ Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/c/Users/16627/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
+
+<p>This prompts you to enter a filename to save the newly generated SSH Key code. To avoid trouble, don&#39;t input anything and press Enter, then id_rsa and id_rsa.pub, two SSH Key files, will be generated by default.</p>
+<p>At this point, the .ssh folder has been created, and you will be prompted:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Created directory ‘/c/Users/16627/.ssh’.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Next, you need to set a password:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Enter passphrase (empty <span class="keyword">for</span> no passphrase):</span><br></pre></td></tr></table></figure>
+
+<p>If you set a password, you&#39;ll need to enter this password when you use ssh to transfer files. To avoid trouble, it&#39;s recommended not to set a password and just press Enter.</p>
+</li>
+<li><p>Enter the password again.</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Enter same passphrase again:</span><br></pre></td></tr></table></figure>
+
+<p>If you didn&#39;t set a password in the previous step, you can just press Enter here. At this point, your SSH Key is set up, and you will receive this code prompt:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ Your identification has been saved <span class="keyword">in</span> ~/.ssh/id_rsa</span><br><span class="line">$ Your public key has been saved <span class="keyword">in</span> ~/.ssh/id_rsa.pub</span><br><span class="line"><span class="comment"># It will also specifically show you your SSH Key</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>When you see the above code, it means your SSH key has been successfully created. You can use <code>ls -al ~/.ssh</code> again to view your Key.</p>
+</li>
+<li><p>Then, you will be prompted &quot;Enter file in which to save the SSH Key.&quot; You can press Enter to use the default location, or specify your own file location. To avoid future conflicts, it&#39;s recommended to use the default directory and press Enter.</p>
+</li>
+</ol>
+<h2 id="Adding-to-the-SSH-agent"><a href="#Adding-to-the-SSH-agent" class="headerlink" title="Adding to the SSH-agent"></a>Adding to the SSH-agent</h2><p>Now that we have the SSH Key, we can add it to the ssh-agent. SSH-agent is a SSH Key manager for SSH. Adding the SSH Key to <code>ssh-agent</code> can prevent you from repeatedly entering the passphrase. To add the SSH Key to <code>ssh-agent</code>, first start <code>ssh-agent</code> in the background.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(ssh-agent -s)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now that our ssh-agent is started, let&#39;s add our SSH Key pair to ssh.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note: If you used a different directory&#x2F;filename when creating the key, replace ~&#x2F;.ssh&#x2F;id_ed25519 with the key location</p>
+</blockquote>
+<h1 id="Adding-SSH-Key-to-GitHub"><a href="#Adding-SSH-Key-to-GitHub" class="headerlink" title="Adding SSH Key to GitHub"></a>Adding SSH Key to GitHub</h1><ol>
+<li><p>Open the GitHub webpage and click on &quot;Profile avatar - Settings&quot; in the top right corner.</p>
+</li>
+<li><p>Select &quot;SSH and GPG keys&quot;</p>
+<p><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705307252973.png" alt="1705307261849"></p>
+</li>
+<li><p>Click on &quot;New SSH Key&quot;</p>
+<ul>
+<li>Title: Give it any name</li>
+<li>Key Type: Default is fine</li>
+</ul>
+</li>
+<li><p>Retrieve SSH Key</p>
+<ul>
+<li>Open the <code>~/.ssh</code> path</li>
+<li>Open the <code>id_rsa.pub</code> file</li>
+<li>Copy its content</li>
+<li>Paste it into the Key section of the form</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705311344396.jpg" alt="1705311346284"></p>
+</li>
+<li><p>Click &quot;Add SSH Key&quot; to create it successfully</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705311453558.png" alt="1705311459940"></p>
+<h1 id="Testing-if-the-SSH-Key-is-Effective"><a href="#Testing-if-the-SSH-Key-is-Effective" class="headerlink" title="Testing if the SSH Key is Effective"></a>Testing if the SSH Key is Effective</h1><p>Enter the following command in the terminal or git Bash:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note that it&#39;s <a href="mailto:&#103;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;" rel="external nofollow noreferrer">&#103;&#x69;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;</a>, not your email.</p>
+</blockquote>
+<p>Then you will be prompted:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ The authenticity of host ‘github.com (13.229.188.59)’ can’t be established.</span><br><span class="line">$ RSA key fingerprint is SHA256:nThbg6kXUp…</span><br><span class="line">$ Are you sure you want to <span class="built_in">continue</span> connecting (<span class="built_in">yes</span>/no/[fingerprint])?</span><br></pre></td></tr></table></figure>
+
+<p>Type yes, then press Enter:</p>
+<p>Next, you will be prompted to enter a password. If you did not set a password when setting up SSH, you will see:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Warning: Permanently added ‘github.com,192.30.255.112’ (RSA) to the list of known hosts.</span><br></pre></td></tr></table></figure>
+
+<p>After the warning, if you see the following message, then you have successfully set up your SSH Key.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Hi “&lt;username&gt;”! You’ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://xsun.work">Alex Sun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://xsun.work/posts/4bbb0782/">http://xsun.work/posts/4bbb0782/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener external nofollow noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/GitHub/">GitHub</a><a class="post-meta__tags" href="/tags/Authentication/">Authentication</a><a class="post-meta__tags" href="/tags/SSH/">SSH</a><a class="post-meta__tags" href="/tags/Cloud/">Cloud</a><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705312535828.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/dd126a4b/" title="Publish your intranet services to the public network - use FRP for network penetration"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1705301049155.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Publish your intranet services to the public network - use FRP for network penetration</div></div><div class="info-2"><div class="info-item-1"> Official documentation：https://gofrp.org/en/docs   System RequirementsAs it is written in Go language, the system requirements are consistent with the latest Go language requirements for systems and platforms. For details, please refer to Golang System requirements. DownloadYou can download the latest version of the client and server binaries from the Release page on GitHub. All files are packaged in a zip file, which also includes a complete set of configuration parameter descriptions. Depl...</div></div></div></a><a class="pagination-related" href="/posts/c9fe5e28/" title="Hexo adds PWA Web App support by Butterfly Theme"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/1704782623202.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Hexo adds PWA Web App support by Butterfly Theme</div></div><div class="info-2"><div class="info-item-1">This solution is based on the Butterfly theme for Hexo, for details see Butterfly - Hexo Theme Installation and Configuration What is PWAProgressive Web Apps (PWA) are applications built using web platform technologies, but they provide a user experience akin to an app specific to a platform. Like websites, PWAs can run on multiple platforms and devices with a single code base. Like an app specific to a platform, they can be installed on devices, run offline and in the background, and integra...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-Github-SSH-Connection"><span class="toc-text">What is Github SSH Connection</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generating-SSH-Key"><span class="toc-text">Generating SSH Key</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Checking-Existing-SSH-Key"><span class="toc-text">Checking Existing SSH Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generating-SSH-Key-1"><span class="toc-text">Generating SSH Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-to-the-SSH-agent"><span class="toc-text">Adding to the SSH-agent</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Adding-SSH-Key-to-GitHub"><span class="toc-text">Adding SSH Key to GitHub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Testing-if-the-SSH-Key-is-Effective"><span class="toc-text">Testing if the SSH Key is Effective</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2023 - 2025 By Alex Sun</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

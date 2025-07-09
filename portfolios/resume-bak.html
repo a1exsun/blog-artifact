@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Alex Sun Blog | Alex Sun Blog</title><meta name="author" content="Alex Sun,me@xsun.work"><meta name="copyright" content="Alex Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Alex Sun     emailme@xsun.work          phone+61 0434570098          languagehttps:&#x2F;&#x2F;xsun.work   SummaryI&#39;m an experienced Software Engineer with 5-years extensive experience. My career has spanne">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alex Sun Blog">
+<meta property="og:url" content="http://xsun.work/portfolios/resume-bak">
+<meta property="og:site_name" content="Alex Sun Blog">
+<meta property="og:description" content="Alex Sun     emailme@xsun.work          phone+61 0434570098          languagehttps:&#x2F;&#x2F;xsun.work   SummaryI&#39;m an experienced Software Engineer with 5-years extensive experience. My career has spanne">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://xsun.work/img/avatar.jpeg">
+<meta property="article:published_time" content="2025-07-07T12:39:26.286Z">
+<meta property="article:modified_time" content="2025-07-07T12:39:26.286Z">
+<meta property="article:author" content="Alex Sun">
+<meta property="article:tag" content="frontend,web,devops,javascript,js,typescript,ts,scrum">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://xsun.work/img/avatar.jpeg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://xsun.work/portfolios/resume-bak"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/logo.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/logo144.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/logo144.png"/><link rel="mask-icon" href="/img/pwa/logo.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 17
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;03dcf6db28f54759abb2aa84ff0901e5&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Alex Sun","link":"Link: ","source":"Source: Alex Sun Blog","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#D2CFCA","bgDark":"#2d3035","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Alex Sun Blog',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'page'
+}</script><link href='https://fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'><link rel="stylesheet" type="text/css" href="/css/self.css"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Alex Sun Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/img/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><h1 id="Alex-Sun"><a href="#Alex-Sun" class="headerlink" title="Alex Sun"></a>Alex Sun</h1><div class="contact-info">
+    <span class="material-icons contact-icon">email</span>me@xsun.work
+    <div class="contact-gap"></div>
+    <span class="material-icons contact-icon">phone</span>+61 0434570098
+    <div class="contact-gap"></div>
+    <span class="material-icons contact-icon">language</span>https://xsun.work
+</div>
+
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>I&#39;m an experienced Software Engineer with 5-years extensive experience. My career has spanned various roles, including Software Architect, Web Developer, DevOps Specialist, Java Developer and AI Engineer.</p>
+<p>During my tenure, I&#39;ve created a set of technical stuff during my work, some of which are as follows:</p>
+<ul>
+<li><strong>an Assembly Process AI Assistant based on LLMs:</strong> Through the combination of RAG and Agent, the assistant learns the customer&#39;s BOM data and assembly process data, helps customers optimize the process procedures, and can even automatically generate new assembly processes. It greatly improves the work efficiency of assembly technicians.</li>
+<li><strong>a Micro-frontend Framework:</strong> The framework allows web applications built on different frameworks to work seamlessly together. It has been running stably in production for more than 18 months, supporting hundreds of B&#x2F;S projects, and providing functions such as data communication, global context sharing, unified virtual routing, RESTful request forwarding etc. It allows many independent projects to form as one organic platform, which greatly improves cross-projects communication and development efficiency.</li>
+<li><strong>a virtualized Web Component Library:</strong> All the components in the library were built using the concept of virtualized rendering, which allows components to load millions of data at once without lagging. The main functions include virtual list, virtual tree, virtual form, lazy load, CRUD integration, shortcut menu, data validation, data export, data paging, draggable modal, custom template, renderer, JSON metadata etc.</li>
+</ul>
+<p>More creations include: a AI-powered Markdown Translation Tool, a 3D Data Graph based on Three.js, a B&#x2F;S online Word&#x2F;Excel collaborative editing solution, a LaTex visual editing tool etc. All of my portfolios can be found on my personal blog.</p>
+<p>Apart from the artifacts above, I spearheaded the architectural design and pivotal development of a Product Lifecycle Management (PLM) platform, facilitating digital upgrade of industrial systems for many key clients in aerospace and aviation. I played a significant role in the development of numerous enterprise-level projects, delivered more than 30 customized industrial software, served for the digital design and process flow of multiple space launch vehicles. Most of the artifacts mentioned above were developed due to these business requirements.</p>
+<h2 id="TECHNICAL-SKILLS"><a href="#TECHNICAL-SKILLS" class="headerlink" title="TECHNICAL SKILLS"></a>TECHNICAL SKILLS</h2><h3 id="Advanced-Skills"><a href="#Advanced-Skills" class="headerlink" title="Advanced Skills"></a>Advanced Skills</h3><pre style="font-size:14.2px">
+<span style="font-weight:bold">AI:</span>       RAG, Fine Tuning, Prompt Engineering, Multimodal,
+          Python, TensorFlow, MCP, OpenAI API, Agent SDK, Gemini API, Langchain
+<span style="font-weight:bold">Frontend:</span> JavaScript, TypeScript, React, Next.js, Vue3, PWA, WebGL, Unity for Web
+<span style="font-weight:bold">Backend:</span>  Java, SpringBoot, SpringCloud, Multi-tenant SaaS
+<span style="font-weight:bold">DevOps:</span>   CI/CD, Docker, Kubernetes, Linux, Shell, Jenkins, GitLab, Jira, Scrum
+
+</pre>
+
+<h3 id="Familiar-With"><a href="#Familiar-With" class="headerlink" title="Familiar With"></a>Familiar With</h3><pre style="font-size:14.2px">
+<span style="font-weight:bold">Cloud:</span>    Azure, AWS, Cloudflare, CDN, OSS, SamVer, Github
+<span style="font-weight:bold">Backend:</span>  Java, SpringBoot, SpringCloud, Multi-tenant SaaS
+<span style="font-weight:bold">AI:</span>       Reinforcement Learning, PyTorch
+<span style="font-weight:bold">Tools:</span>    VS Code, IDEA, Webstorm, PyCharm, Postman, Markdown, Termius, Copilot
+</pre>
+
+<h2 id="Experience"><a href="#Experience" class="headerlink" title="Experience"></a>Experience</h2><h3 id="Senior-Software-Architect"><a href="#Senior-Software-Architect" class="headerlink" title="Senior Software Architect"></a>Senior Software Architect</h3><div style="display: flex; justify-content: space-between; align-items: center;margin: 8px 0px">
+<div style="font-weight:300">Nanjing Wandeyitong Intelligent Technology Co., Ltd.</div>
+<div style="font-weight:300;font-style:italic">Feb 2023 - Sept 2024 (19 months), Full Time</div>
+</div>
+
+<div class="c-title-3">Responsibilities</div>
+
+<ul>
+<li>Architecture design of a brand-new PLM platform</li>
+<li>Development of many core features</li>
+<li>Technical solution design and project implementation</li>
+<li>Development team management</li>
+<li>Exploration and application of cutting-edge technologies</li>
+</ul>
+<div class="c-title-3">Achievements</div>
+
+<ul>
+<li><strong>Architected and Developed &#39;Wonder Insight&#39; PLM Platform:</strong> Spearheaded the architecture design and core development of &#39;Wonder Insight&#39;, an innovative domestic PLM platform. Integrated flexible architecture with technologies like Wonder Microweb and Spring Cloud, and implemented a highly automated DevOps pipeline with cluster deployment support using Kubernetes. This advanced architecture and robust codebase have enhanced product competitiveness, attracting over 100 customers and 1,000+ users, recognized for its stability, reliability and high performance.</li>
+<li><strong>Creation of Wonder Agent:</strong> As mentioned in the summary, Wonder Agent is an AI agent based on LLMs. It has two main features: RAG and Agent, which means It can learn a large amount of domain knowledge through Embedding without undergoing fine-tuning training, and it can intelligently select the appropriate external API to call in different scenario according to the API Doc, thereby obtaining external knowledge and answering.</li>
+<li><strong>Designed Technical Solutions for Aerospace Projects:</strong> Designed and ensured successful delivery of technical solutions for various aerospace projects. Leveraging deep industry experience and comprehensive understanding of customer needs, I developed tailored solutions that significantly met client requirements.</li>
+<li><strong>Innovative Technical Development &amp; Providing highlight features:</strong> I was assigned to conduct technology exploration and application for the company. So I have completed a lot of technical verification and technical innovation during my daily work. Most of the non-classified artifacts are already mentioned in the summary, and you can see demos of them on my blog.</li>
+</ul>
+<div class="c-title-3">Key Projects</div>
+
+<ul>
+<li>Wonder Insight PLM platform</li>
+<li>Chinese Lunar Exploration Program (CLEP) <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/clep.jpeg" height="18px" style="vertical-align: middle;transform: translateY(-2px);display: inline-block;"/> PLM project</li>
+<li>China Electronics Technology Group Corporation (CETC) <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/cetc1.png" height="12px" style="vertical-align: middle;transform: translateY(-4px);display: inline-block;"/> PLM project</li>
+<li>China Aerospace Science and Technology Corporation (CASC) <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/casc1.png" height="18px" style="vertical-align: middle;transform: translateY(-2px);display: inline-block;"/> PLM project</li>
+<li>CASC 1st Research Institute <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/casc1.png" height="18px" style="vertical-align: middle;transform: translateY(-2px);display: inline-block;"/> Project Management System</li>
+<li>CLEP <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/clep.jpeg" height="18px" style="vertical-align: middle;transform: translateY(-2px);display: inline-block;"/> Project Management System</li>
+<li>CASC 5st Research Institute <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/casc1.png" height="18px" style="vertical-align: middle;transform: translateY(-2px);display: inline-block;"/> Data Center Project</li>
+<li>China Aerospace Science and Industry Corporation Limited (CASIC) 3rd Research Institute <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/casic.png" height="19px" style="vertical-align: middle;transform: translateY(-4px);display: inline-block;"/> Project Management System</li>
+</ul>
+<h3 id="Senior-Software-Engineer"><a href="#Senior-Software-Engineer" class="headerlink" title="Senior Software Engineer"></a>Senior Software Engineer</h3><div style="display: flex; justify-content: space-between; align-items: center;margin: 8px 0px">
+<div style="font-weight:300">Nanjing Wandeyitong Intelligent Technology Co., Ltd.</div>
+<div style="font-weight:300;font-style:italic">Sept 2021 - Jan 2023 (1 year 4 months), Full Time</div>
+</div>
+
+<div class="c-title-3">Responsibilities</div>
+
+<ul>
+<li>Development of multiple projects</li>
+<li>Ensure project deployment and delivery</li>
+<li>Provide technical support to implementation personnel</li>
+</ul>
+<div class="c-title-3">Achievements</div>
+
+<ul>
+<li><strong>Timely Project Delivery with High-Quality Standards:</strong> Successfully led the transition from Siemens Teamcenter to an independent development route. Adapted to new technology stacks and frameworks, ensuring the on-time completion and high-quality delivery of multiple projects through self-directed learning and technical mastery.</li>
+<li><strong>Development of Wonder Microweb, a Micro Frontends Framework:</strong> Innovated Wonder Microweb, enabling seamless integration of diverse frontend technologies such as React, Angular, Vue, and Next.js. It provides many features like data communication, global context management, unified virtual routing, unified API scheduling, js sandbox, prefetch, css isolation etc. It&#39;s a lot like iframe but far more than iframe. This framework played a critical role in addressing the diverse needs of design and manufacturing clients, thereby becoming a key component in realizing the company&#39;s long-term vision.</li>
+<li><strong>Creation of Wonder UI, a Vue3-based Web UI Component Library:</strong> As mentioned in the summary, Wonder UI is a virtualized solution that can adapt to various big data scenarios. Many universal functions have been abstracted into Wonder UI. This library includes versatile components like tables, forms, and modal dialogs, with notable features such as the ability to render over 1,000,000 rows and 1,000,000 columns in one table without performance lag, demonstrating significant advancements in UI development.</li>
+<li><strong>Implementation of Cloud-Native DevOps Solutions:</strong> Enhanced client efficiency by introducing containerized deployment solutions like Docker and Kubernetes. This strategic move resolved issues related to deployment complexities, dependency conflicts, and environment inconsistencies, significantly optimizing the deployment process and operational efficiency.</li>
+</ul>
+<div class="c-title-3">Key Projects</div>
+
+<ul>
+<li>Wonder Microweb micro frontends framework</li>
+<li>Wonder UI web component library</li>
+<li>CASC 5th Research Institute <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/casc1.png" height="18px" style="vertical-align: middle;transform: translateY(-2px);display: inline-block;"/> Manufacturing Process Management (MPM) project</li>
+<li>CASIC 3rd Research Institute <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/casic.png" height="19px" style="vertical-align: middle;transform: translateY(-4px);display: inline-block;"/> Data Package Management (DPM) project</li>
+</ul>
+<h3 id="Software-Engineer"><a href="#Software-Engineer" class="headerlink" title="Software Engineer"></a>Software Engineer</h3><div style="display: flex; justify-content: space-between; align-items: center;margin: 8px 0px">
+<div style="font-weight:300">Nanjing Wandeyitong Information Technology Co., Ltd.</div>
+<div style="font-weight:300;font-style:italic">Sept 2019 - Aug 2021 (2 year), Full Time</div>
+</div>
+
+<div class="c-title-3">Responsibilities</div>
+
+<ul>
+<li>Development of multiple Siemens Teamcenter projects</li>
+</ul>
+<div class="c-title-3">Key Projects</div>
+
+<ul>
+<li>CASIC 3rd Institute <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/casic.png" height="19px" style="vertical-align: middle;transform: translateY(-4px);display: inline-block;"/> Teamcenter Manufacturing (TCM) project</li>
+<li>Dongfeng Nissan <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/nissan.png" height="17px" style="vertical-align: middle;transform: translateY(-2px);display: inline-block;"/> Wuhan Plant TCM project</li>
+<li>CASC <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/casc1.png" height="18px" style="vertical-align: middle;transform: translateY(-2px);display: inline-block;"/> 5rd Research Institute Department TCM project</li>
+<li>Shaanxi Xi&#39;an Fast Automobile Transmission <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/fast.png" height="19px" style="vertical-align: middle;transform: translateY(-3px);display: inline-block;"/> TCM project</li>
+<li>Emerson Electric <img src="https://raw.githubusercontent.com/a1exsun/file/main/resume/emerson.png" height="19px" style="vertical-align: middle;transform: translateY(-4px);display: inline-block;"/> Product Data Management (PDM) Phase II project using Teamcenter</li>
+</ul>
+<h2 id="Key-Strengths"><a href="#Key-Strengths" class="headerlink" title="Key Strengths"></a>Key Strengths</h2><ul>
+<li><strong>Collaborative Team Player</strong> : Demonstrated success in working within diverse teams, fostering an environment of mutual respect and cooperation.</li>
+<li><strong>Effective Communicator</strong> : Proficient in conveying complex ideas clearly and persuasively to varied audiences, enhancing team understanding and client satisfaction.</li>
+<li><strong>Strategic Problem Solver</strong> : Skilled in identifying core issues and implementing creative, practical solutions that align with business objectives.</li>
+<li><strong>Client-Centric Approach</strong> : Proven ability in understanding and translating client needs into actionable solutions, driving customer satisfaction and loyalty.</li>
+<li><strong>Adaptive Learner</strong> : Quick to assimilate new information and technologies, ensuring continuous personal and professional growth.</li>
+<li><strong>Business-Oriented Innovator</strong> : Distinguished for applying innovative thinking to align with and drive business objectives and growth.</li>
+</ul>
+<h2 id="Education-Certifications"><a href="#Education-Certifications" class="headerlink" title="Education &amp; Certifications"></a>Education &amp; Certifications</h2><h3 id="Monash-University"><a href="#Monash-University" class="headerlink" title="Monash University"></a>Monash University</h3><p>Master of Artificial Intelligence (Full-time, 2 years)<br><span style="font-weight: 300; font-style: italic;">Feb 2025 - Present</span></p>
+<h3 id="Suzhou-University-of-Science-and-Technology"><a href="#Suzhou-University-of-Science-and-Technology" class="headerlink" title="Suzhou University of Science and Technology"></a>Suzhou University of Science and Technology</h3><p>Bachelor of Science, Computer Science<br><span style="font-weight: 300; font-style: italic;">Sept 2016 - Jun 2020</span></p>
+<h3 id="The-3rd-China-“Internet-”-Innovation-and-Entrepreneurship-Competition"><a href="#The-3rd-China-“Internet-”-Innovation-and-Entrepreneurship-Competition" class="headerlink" title="The 3rd China “Internet +” Innovation and Entrepreneurship Competition"></a>The 3rd China “Internet +” Innovation and Entrepreneurship Competition</h3><p>1st Prize - <span style="font-weight: 300; font-style: italic;">Jun 2018</span><br>National Development and Reform Commission</p>
+<h3 id="National-Bachelor-Students-Innovation-and-Entrepreneurship-Program"><a href="#National-Bachelor-Students-Innovation-and-Entrepreneurship-Program" class="headerlink" title="National Bachelor Students&#39; Innovation and Entrepreneurship Program"></a>National Bachelor Students&#39; Innovation and Entrepreneurship Program</h3><p>Founder &amp; Team Leader - <span style="font-weight: 300; font-style: italic;">Oct 2017</span><br>Ministry of Education, China - <span style="color: gray;">Credential ID 201710332078</span></p>
+<h3 id="Suzhou-University-of-Science-and-Technology-Campus-Person-of-the-Year"><a href="#Suzhou-University-of-Science-and-Technology-Campus-Person-of-the-Year" class="headerlink" title="Suzhou University of Science and Technology Campus Person of the Year"></a>Suzhou University of Science and Technology Campus Person of the Year</h3><p>Person of the Year - <span style="font-weight: 300; font-style: italic;">Dec 2017</span><br>Suzhou University of Science and Technology</p>
+<style>
+.contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-icon {
+    font-size: 20px;
+    vertical-align: middle;
+    margin: 4px;
+}
+
+.contact-gap {
+    width: 20px
+}
+
+pre {
+    font-size: 14.2px;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0px;
+}
+
+.company-name {
+    font-weight: 300;
+}
+
+.duration {
+    font-weight: 300;
+    font-style: italic;
+}
+
+.skill-label {
+    font-weight: bold;
+}
+
+.logo-image {
+    vertical-align: middle;
+    transform: translateY(-2px);
+    display: inline-block;
+}
+
+.logo-image-small {
+    vertical-align: middle;
+    transform: translateY(-4px);
+    display: inline-block;
+}
+
+.credential-id {
+    color: gray;
+}
+
+.date {
+    font-weight: 300;
+    font-style: italic;
+}
+</style>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Alex Sun</div><div class="author-info-description">Frontend & DevOps Engineer</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="mailto:me@xsun.work"><i class="fas fa-envelope"></i><span>Email Me Directly</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://www.youtube.com/@a1ex5un" rel="external nofollow noreferrer" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a><a class="social-icon" href="https://github.com/a1exsun" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://x.com/a1ex5un" rel="external nofollow noreferrer" target="_blank" title="X"><i class="fab fa-x-twitter"></i></a><a class="social-icon" href="https://www.linkedin.com/in/x-sun-b31804255/" rel="external nofollow noreferrer" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a><a class="social-icon" href="https://discord.gg/aTmfxc9JtA" rel="external nofollow noreferrer" target="_blank" title="Discord"><i class="fab fa-discord"></i></a><a class="social-icon" href="https://space.bilibili.com/11693168" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/5c8df8e4000000001100b42e" rel="external nofollow noreferrer" target="_blank" title="Xiaohongshu"><i class="fas fa-book"></i></a><a class="social-icon" href="https://www.douyin.com/user/MS4wLjABAAAAJGjdQUA3h076kubA6yzB-DUjEZU_YpKkT5gWk8yA9Es" rel="external nofollow noreferrer" target="_blank" title="Douyin"><i class="fab fa-tiktok"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alex-Sun"><span class="toc-text">Alex Sun</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TECHNICAL-SKILLS"><span class="toc-text">TECHNICAL SKILLS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Advanced-Skills"><span class="toc-text">Advanced Skills</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Familiar-With"><span class="toc-text">Familiar With</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Experience"><span class="toc-text">Experience</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Senior-Software-Architect"><span class="toc-text">Senior Software Architect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Senior-Software-Engineer"><span class="toc-text">Senior Software Engineer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Software-Engineer"><span class="toc-text">Software Engineer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Strengths"><span class="toc-text">Key Strengths</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Education-Certifications"><span class="toc-text">Education &amp; Certifications</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Monash-University"><span class="toc-text">Monash University</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Suzhou-University-of-Science-and-Technology"><span class="toc-text">Suzhou University of Science and Technology</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-3rd-China-%E2%80%9CInternet-%E2%80%9D-Innovation-and-Entrepreneurship-Competition"><span class="toc-text">The 3rd China “Internet +” Innovation and Entrepreneurship Competition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#National-Bachelor-Students-Innovation-and-Entrepreneurship-Program"><span class="toc-text">National Bachelor Students&#39; Innovation and Entrepreneurship Program</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Suzhou-University-of-Science-and-Technology-Campus-Person-of-the-Year"><span class="toc-text">Suzhou University of Science and Technology Campus Person of the Year</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/707751bc/" title="Learnify - Conversation History - Hand mode behavior and hover issue"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/cursor-prompts.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Conversation History - Hand mode behavior and hover issue"/></a><div class="content"><a class="title" href="/posts/707751bc/" title="Learnify - Conversation History - Hand mode behavior and hover issue">Learnify - Conversation History - Hand mode behavior and hover issue</a><time datetime="2025-07-09T10:27:48.979Z" title="Updated 2025-07-09 18:27:48">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Tool Switching Mechanism"/></a><div class="content"><a class="title" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism">Learnify - Tool Switching Mechanism</a><time datetime="2025-07-09T10:15:17.435Z" title="Updated 2025-07-09 18:15:17">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/aca9ee12/" title="Learnify - PanTool Enhancement Implementation Guide"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - PanTool Enhancement Implementation Guide"/></a><div class="content"><a class="title" href="/posts/aca9ee12/" title="Learnify - PanTool Enhancement Implementation Guide">Learnify - PanTool Enhancement Implementation Guide</a><time datetime="2025-07-09T10:13:24.042Z" title="Updated 2025-07-09 18:13:24">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Tool Switching Mechanism"/></a><div class="content"><a class="title" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism">Learnify - Tool Switching Mechanism</a><time datetime="2025-07-09T10:12:24.548Z" title="Updated 2025-07-09 18:12:24">2025-07-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/b43d01ac/" title="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution"><img src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution"/></a><div class="content"><a class="title" href="/posts/b43d01ac/" title="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution">Learnify - Hand Mode Hover Functionality Issue Analysis and Solution</a><time datetime="2025-07-09T10:11:50.967Z" title="Updated 2025-07-09 18:11:50">2025-07-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cloud/"><span class="card-category-list-name">Cloud</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DevOps/"><span class="card-category-list-name">DevOps</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Web/"><span class="card-category-list-name">Web</span><span class="card-category-list-count">13</span></a></li>
+          </ul></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/07/">
+            <span class="card-archive-list-date">
+              July 2025
+            </span>
+            <span class="card-archive-list-count">10</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              December 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/01/">
+            <span class="card-archive-list-date">
+              January 2024
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">18</div></div><div class="webinfo-item"><div class="item-name">Total Word Count :</div><div class="item-count">18.3k</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-09T10:28:35.350Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2023 - 2025 By Alex Sun</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

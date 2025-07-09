@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Learnify - BlockSuite Tool System In-depth Research and Hand Mode Enhancement | Alex Sun Blog</title><meta name="author" content="Alex Sun,me@xsun.work"><meta name="copyright" content="Alex Sun"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="BlockSuite Tool System In-depth Research and Hand Mode EnhancementProject OverviewThis document series records the in-depth research on the BlockSuite tool system, focusing on solving the issue of min">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learnify - BlockSuite Tool System In-depth Research and Hand Mode Enhancement">
+<meta property="og:url" content="http://xsun.work/posts/a66b7bc2/">
+<meta property="og:site_name" content="Alex Sun Blog">
+<meta property="og:description" content="BlockSuite Tool System In-depth Research and Hand Mode EnhancementProject OverviewThis document series records the in-depth research on the BlockSuite tool system, focusing on solving the issue of min">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/20250709194019178.png">
+<meta property="article:published_time" content="2025-07-09T09:57:14.588Z">
+<meta property="article:modified_time" content="2025-07-09T10:06:24.418Z">
+<meta property="article:author" content="Alex Sun">
+<meta property="article:tag" content="AI generated">
+<meta property="article:tag" content="AI summary">
+<meta property="article:tag" content="Learnify">
+<meta property="article:tag" content="Cursor">
+<meta property="article:tag" content="Claude-4-Sonnet">
+<meta property="article:tag" content="Hand Mode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/20250709194019178.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Learnify - BlockSuite Tool System In-depth Research and Hand Mode Enhancement",
+  "url": "http://xsun.work/posts/a66b7bc2/",
+  "image": "https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/20250709194019178.png",
+  "datePublished": "2025-07-09T09:57:14.588Z",
+  "dateModified": "2025-07-09T10:06:24.418Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Alex Sun",
+      "url": "http://xsun.work"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://xsun.work/posts/a66b7bc2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/logo.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/logo144.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/logo144.png"/><link rel="mask-icon" href="/img/pwa/logo.png" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'undefined')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 6 || hour >= 17
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;03dcf6db28f54759abb2aa84ff0901e5&quot;}"></script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Alex Sun","link":"Link: ","source":"Source: Alex Sun Blog","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"You have switched to Traditional Chinese","cht_to_chs":"You have switched to Simplified Chinese","day_to_night":"You have switched to Dark Mode","night_to_day":"You have switched to Light Mode","bgLight":"#D2CFCA","bgDark":"#2d3035","position":"top-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Learnify - BlockSuite Tool System In-depth Research and Hand Mode Enhancement',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link href='https://fonts.googleapis.com/css?family=Bad Script' rel='stylesheet'><link rel="stylesheet" type="text/css" href="/css/self.css"><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Alex Sun Blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/20250709194019178.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"></a><a class="nav-page-title" href="/"><span class="site-name">Learnify - BlockSuite Tool System In-depth Research and Hand Mode Enhancement</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-paperclip"></i><span> Page</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-laptop-code"></i><span> Dev</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/AI/"><i class="fa-fw fas fa-robot"></i><span> AI</span></a></li><li><a class="site-page child" href="/categories/Web/"><i class="fa-fw fab fa-html5"></i><span> Web</span></a></li><li><a class="site-page child" href="/categories/Server/"><i class="fa-fw fas fa-server"></i><span> Backend</span></a></li><li><a class="site-page child" href="/categories/Cloud/"><i class="fa-fw fas fa-cloud"></i><span> Cloud</span></a></li><li><a class="site-page child" href="/categories/DevOps/"><i class="fa-fw fab fa-docker"></i><span> DevOps</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-code"></i><span> All</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-horse-head"></i><span> Portfolios</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/portfolios/light-plm"><i class="fa-fw fas fa-bar-chart"></i><span> Light PLM</span></a></li><li><a class="site-page child" href="/portfolios/light-viewer"><i class="fa-fw fas fa-low-vision"></i><span> Light Viewer</span></a></li><li><a class="site-page child" href="/portfolios/light-gpt"><i class="fa-fw fas fa-search"></i><span> Light GPT</span></a></li><li><a class="site-page child" href="/portfolios/xsun-ui"><i class="fa-fw fa fa-paintbrush"></i><span> Xsun UI</span></a></li><li><a class="site-page child" href="/portfolios/ir-calculator"><i class="fa-fw fas fa-calculator"></i><span> Real Interest Calculator</span></a></li><li><a class="site-page child" href="/portfolios/iframe-keep-alive"><i class="fa-fw fas fa-code"></i><span> iframe keep-alive Demo</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about-me/"><i class="fa-fw fas fa-portrait"></i><span> Resume</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-language"></i><span> Language</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="https://xsun.work/zh-CN"><i class="fa-fw fas fa-c"></i><span> 中文</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Learnify - BlockSuite Tool System In-depth Research and Hand Mode Enhancement</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-09T09:57:14.588Z" title="Created 2025-07-09 17:57:14">2025-07-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-09T10:06:24.418Z" title="Updated 2025-07-09 18:06:24">2025-07-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web/">Web</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>7mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-07-09 18:06:24&quot;}" hidden></div><h1 id="BlockSuite-Tool-System-In-depth-Research-and-Hand-Mode-Enhancement"><a href="#BlockSuite-Tool-System-In-depth-Research-and-Hand-Mode-Enhancement" class="headerlink" title="BlockSuite Tool System In-depth Research and Hand Mode Enhancement"></a>BlockSuite Tool System In-depth Research and Hand Mode Enhancement</h1><h2 id="Project-Overview"><a href="#Project-Overview" class="headerlink" title="Project Overview"></a>Project Overview</h2><p>This document series records the in-depth research on the BlockSuite tool system, focusing on solving the issue of mindmap hover functionality failure in Hand Mode (pan tool), and successfully upgrading PanTool from a simple pan tool to a comprehensive tool supporting complete interactions.</p>
+<h2 id="Problem-Background"><a href="#Problem-Background" class="headerlink" title="Problem Background"></a>Problem Background</h2><h3 id="Initial-Problem"><a href="#Initial-Problem" class="headerlink" title="Initial Problem"></a>Initial Problem</h3><p>When users switched from the default Select tool to Hand Mode, the following functions completely failed:</p>
+<ul>
+<li>Mindmap node hover highlighting effects</li>
+<li>Collapse button show&#x2F;hide</li>
+<li>Cursor style changes (pointer ↔ default)</li>
+<li>Click expand&#x2F;collapse operations</li>
+</ul>
+<h3 id="Impact-Scope"><a href="#Impact-Scope" class="headerlink" title="Impact Scope"></a>Impact Scope</h3><p>This problem seriously affected user experience. Users could not perform any mindmap interaction operations in Hand Mode, only view panning was possible.</p>
+<h2 id="Research-Process"><a href="#Research-Process" class="headerlink" title="Research Process"></a>Research Process</h2><h3 id="Phase-1-Problem-Analysis-🔍"><a href="#Phase-1-Problem-Analysis-🔍" class="headerlink" title="Phase 1: Problem Analysis 🔍"></a>Phase 1: Problem Analysis 🔍</h3><p><strong>Key Findings</strong>:</p>
+<ul>
+<li>Tool switching is implemented through <code>ToolController.setTool()</code></li>
+<li><code>this.currentToolName$.value = toolNameStr</code> is the core of switching</li>
+<li>All events are routed to the currently active tool</li>
+<li>PanTool only implemented drag-related methods, lacking other interaction methods</li>
+</ul>
+<p><strong>Debug Tools</strong>:</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Tool switching tracking</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`BEFORE: currentToolName = <span class="subst">$&#123;<span class="variable language_">this</span>.currentToolName$.peek()&#125;</span>`</span>);</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">currentToolName$</span>.<span class="property">value</span> = toolNameStr;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`AFTER: currentToolName = <span class="subst">$&#123;<span class="variable language_">this</span>.currentToolName$.peek()&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Event routing tracking</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Event <span class="subst">$&#123;evtName&#125;</span> -&gt; tool: <span class="subst">$&#123;tool?.toolName&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Phase-2-Solution-Exploration-💡"><a href="#Phase-2-Solution-Exploration-💡" class="headerlink" title="Phase 2: Solution Exploration 💡"></a>Phase 2: Solution Exploration 💡</h3><p><strong>Attempted Solutions</strong>:</p>
+<ol>
+<li>❌ <strong>Block tool switching</strong>: Simple and direct but poor user experience</li>
+<li>❌ <strong>Event re-routing</strong>: Would cause state inconsistency issues</li>
+<li>✅ <strong>PanTool enhancement</strong>: Complete functionality and consistent state</li>
+</ol>
+<p><strong>Final Choice</strong>: PanTool enhancement solution, implementing complete interaction by integrating the interactivity system.</p>
+<h3 id="Phase-3-Implementation-and-Optimization-🚀"><a href="#Phase-3-Implementation-and-Optimization-🚀" class="headerlink" title="Phase 3: Implementation and Optimization 🚀"></a>Phase 3: Implementation and Optimization 🚀</h3><p>Successfully implemented:</p>
+<ul>
+<li>Kept original pan functionality 100% unchanged</li>
+<li>Added complete mindmap interaction support</li>
+<li>Integrated BlockSuite&#39;s interactivity system</li>
+<li>Resolved all linter errors and compatibility issues</li>
+</ul>
+<h2 id="Technical-Documentation"><a href="#Technical-Documentation" class="headerlink" title="Technical Documentation"></a>Technical Documentation</h2><h3 id="Core-Documentation"><a href="#Core-Documentation" class="headerlink" title="Core Documentation"></a>Core Documentation</h3><ol>
+<li><p><strong><a href="./tool-switching-mechanism.md">Tool Switching Mechanism In-depth Analysis</a></strong></p>
+<ul>
+<li>How ToolController works</li>
+<li>Complete flow of setTool method</li>
+<li>Event routing mechanism analysis</li>
+<li>Debugging techniques and best practices</li>
+</ul>
+</li>
+<li><p><strong><a href="./hand-mode-hover-fix.md">Hand Mode Hover Function Failure Problem Analysis and Solution</a></strong></p>
+<ul>
+<li>Root cause analysis of the problem</li>
+<li>Comparison of various solutions</li>
+<li>Detailed description of final implementation</li>
+<li>Performance considerations and test validation</li>
+</ul>
+</li>
+<li><p><strong><a href="./event-routing-interactivity.md">Event Routing and Interactivity System Detailed Explanation</a></strong></p>
+<ul>
+<li>Complete event handling architecture</li>
+<li>How GfxViewEventManager works</li>
+<li>Extension system design patterns</li>
+<li>Implementation details of mindmap hover functionality</li>
+</ul>
+</li>
+<li><p><strong><a href="./pan-tool-enhancements.md">PanTool Enhancement Implementation Details</a></strong></p>
+<ul>
+<li>Analysis of original PanTool limitations</li>
+<li>Enhancement design goals and principles</li>
+<li>Step-by-step implementation process</li>
+<li>Compatibility and performance considerations</li>
+</ul>
+</li>
+</ol>
+<h3 id="Supplementary-Documentation"><a href="#Supplementary-Documentation" class="headerlink" title="Supplementary Documentation"></a>Supplementary Documentation</h3><ol start="5">
+<li><p><strong><a href="./mindmap-collapse-button.md">Mindmap Collapse Button Implementation</a></strong></p>
+<ul>
+<li>Collapse button creation and management</li>
+<li>Hover state handling</li>
+<li>Cursor change logic</li>
+</ul>
+</li>
+<li><p><strong><a href="./tool-selector-modes.md">Tool Selector Modes</a></strong></p>
+<ul>
+<li>Tool mode definitions</li>
+<li>UI state management</li>
+<li>User interaction workflow</li>
+</ul>
+</li>
+<li><p><strong><a href="./edgeless-theme-behavior.md">Edgeless Theme Behavior</a></strong></p>
+<ul>
+<li>Theme switching mechanism</li>
+<li>Visual effect management</li>
+<li>Responsive design considerations</li>
+</ul>
+</li>
+</ol>
+<h2 id="Key-Technical-Breakthroughs"><a href="#Key-Technical-Breakthroughs" class="headerlink" title="Key Technical Breakthroughs"></a>Key Technical Breakthroughs</h2><h3 id="1-Deep-Understanding-of-Tool-Switching-Mechanism"><a href="#1-Deep-Understanding-of-Tool-Switching-Mechanism" class="headerlink" title="1. Deep Understanding of Tool Switching Mechanism"></a>1. Deep Understanding of Tool Switching Mechanism</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Core discovery: This line of code is the key to tool switching</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">currentToolName$</span>.<span class="property">value</span> = toolNameStr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// It immediately changes the target tool for all subsequent event handling</span></span><br><span class="line">tool = tool ?? <span class="variable language_">this</span>.<span class="property">currentTool$</span>.<span class="title function_">peek</span>(); <span class="comment">// In invokeToolHandler</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Correct-Use-of-Interactivity-System"><a href="#2-Correct-Use-of-Interactivity-System" class="headerlink" title="2. Correct Use of Interactivity System"></a>2. Correct Use of Interactivity System</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Key pattern: Priority dispatch to interactivity system</span></span><br><span class="line"><span class="keyword">override</span> <span class="title function_">pointerMove</span>(<span class="attr">e</span>: <span class="title class_">PointerEventState</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">interactivity</span>?.<span class="title function_">dispatchEvent</span>(<span class="string">&#x27;pointermove&#x27;</span>, e);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Then handle tool-specific logic</span></span><br><span class="line"><span class="keyword">override</span> <span class="title function_">dragEnd</span>(<span class="attr">e</span>: <span class="title class_">PointerEventState</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">interactivity</span>?.<span class="title function_">dispatchEvent</span>(<span class="string">&#x27;dragend&#x27;</span>, e);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">_lastPoint</span> = <span class="literal">null</span>;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">panning$</span>.<span class="property">value</span> = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Complete-Event-Handling-Coverage"><a href="#3-Complete-Event-Handling-Coverage" class="headerlink" title="3. Complete Event Handling Coverage"></a>3. Complete Event Handling Coverage</h3><p>The enhanced PanTool implements all necessary event methods:</p>
+<ul>
+<li><code>click</code> - Click interactions</li>
+<li><code>pointerMove</code> - Hover functionality</li>
+<li><code>pointerDown/pointerUp</code> - Complete mouse lifecycle</li>
+<li><code>doubleClick</code> - Double-click operations</li>
+<li><code>dragStart/dragMove/dragEnd</code> - Pan functionality (unchanged)</li>
+</ul>
+<h2 id="Results-Validation"><a href="#Results-Validation" class="headerlink" title="Results Validation"></a>Results Validation</h2><h3 id="Functionality-Test-Checklist-✅"><a href="#Functionality-Test-Checklist-✅" class="headerlink" title="Functionality Test Checklist ✅"></a>Functionality Test Checklist ✅</h3><ul>
+<li>✅ <strong>View Panning</strong>: Drag empty areas to pan view normally</li>
+<li>✅ <strong>Mindmap Hover</strong>: Mouse hovering over nodes shows highlighting effects</li>
+<li>✅ <strong>Collapse Button Display</strong>: Correctly shows expand&#x2F;collapse buttons on hover</li>
+<li>✅ <strong>Cursor Changes</strong>: Cursor changes to pointer when hovering over interactive elements</li>
+<li>✅ <strong>Click Expand&#x2F;Collapse</strong>: Clicking buttons can normally expand&#x2F;collapse nodes</li>
+<li>✅ <strong>Double-click Function</strong>: Double-click operations work normally</li>
+<li>✅ <strong>Middle-click Pan</strong>: Middle-click temporary pan function remains normal</li>
+</ul>
+<h3 id="Performance-Testing"><a href="#Performance-Testing" class="headerlink" title="Performance Testing"></a>Performance Testing</h3><ul>
+<li><strong>Event Handling Overhead</strong>: Slight increase, but completely acceptable</li>
+<li><strong>Memory Usage</strong>: No significant increase</li>
+<li><strong>Responsiveness</strong>: No user-perceivable delay</li>
+</ul>
+<h3 id="Compatibility-Verification"><a href="#Compatibility-Verification" class="headerlink" title="Compatibility Verification"></a>Compatibility Verification</h3><ul>
+<li><strong>Backward Compatibility</strong>: All original functions remain 100% unchanged</li>
+<li><strong>API Stability</strong>: No breaking of any existing interfaces</li>
+<li><strong>Middle-click Pan</strong>: Special functionality completely retains original logic</li>
+</ul>
+<h2 id="Lessons-Learned"><a href="#Lessons-Learned" class="headerlink" title="Lessons Learned"></a>Lessons Learned</h2><h3 id="Technical-Insights"><a href="#Technical-Insights" class="headerlink" title="Technical Insights"></a>Technical Insights</h3><ol>
+<li><strong>Tool Design Philosophy</strong>: Each tool should be functionally complete, not just specialized</li>
+<li><strong>Event Handling Pattern</strong>: Priority dispatch to system, then handle tool-specific logic</li>
+<li><strong>Code Reuse</strong>: Using existing interactivity system is better than reimplementation</li>
+<li><strong>Debugging Strategy</strong>: Add logs at key points to understand system workflow</li>
+</ol>
+<h3 id="Architecture-Understanding"><a href="#Architecture-Understanding" class="headerlink" title="Architecture Understanding"></a>Architecture Understanding</h3><ol>
+<li><strong>Layered Architecture</strong>: Browser Events → GfxViewEventManager → ToolController → Tool → Interactivity</li>
+<li><strong>Separation of Concerns</strong>: Tools handle specific functions, Extensions handle general interactions</li>
+<li><strong>Reactive Design</strong>: State management through Signal system</li>
+</ol>
+<h3 id="Debugging-Techniques"><a href="#Debugging-Techniques" class="headerlink" title="Debugging Techniques"></a>Debugging Techniques</h3><ol>
+<li><strong>Systematic Tracking</strong>: Start from user operations and trace layer by layer to final effects</li>
+<li><strong>Key Point Logging</strong>: Add detailed logs at critical state change points</li>
+<li><strong>Comparative Analysis</strong>: Find differences by comparing with normal tools (DefaultTool)</li>
+</ol>
+<h2 id="Best-Practices-Summary"><a href="#Best-Practices-Summary" class="headerlink" title="Best Practices Summary"></a>Best Practices Summary</h2><h3 id="Tool-Development"><a href="#Tool-Development" class="headerlink" title="Tool Development"></a>Tool Development</h3><ol>
+<li><strong>Functional Completeness</strong>: Implement all relevant event handling methods</li>
+<li><strong>System Integration</strong>: Correctly use the interactivity system</li>
+<li><strong>Backward Compatibility</strong>: Keep existing functions unaffected</li>
+<li><strong>Performance Considerations</strong>: Avoid unnecessary calculations and DOM operations</li>
+</ol>
+<h3 id="Debugging-Methods"><a href="#Debugging-Methods" class="headerlink" title="Debugging Methods"></a>Debugging Methods</h3><ol>
+<li><strong>Event Tracking</strong>: Add logs at key points in the event handling chain</li>
+<li><strong>State Monitoring</strong>: Monitor tool states and switching processes</li>
+<li><strong>Comparative Testing</strong>: Compare behavioral differences between different tools</li>
+</ol>
+<h3 id="Code-Quality"><a href="#Code-Quality" class="headerlink" title="Code Quality"></a>Code Quality</h3><ol>
+<li><strong>Clear Comments</strong>: Explain design decisions and implementation considerations</li>
+<li><strong>Error Handling</strong>: Properly handle edge cases</li>
+<li><strong>Linting</strong>: Follow code standards, resolve all warnings</li>
+</ol>
+<h2 id="Impact-and-Value"><a href="#Impact-and-Value" class="headerlink" title="Impact and Value"></a>Impact and Value</h2><h3 id="User-Experience-Improvement"><a href="#User-Experience-Improvement" class="headerlink" title="User Experience Improvement"></a>User Experience Improvement</h3><ul>
+<li><strong>Consistency</strong>: Hand Mode now provides interaction experience consistent with Select Mode</li>
+<li><strong>Efficiency</strong>: Users don&#39;t need to frequently switch between modes</li>
+<li><strong>Intuitiveness</strong>: All interactions work as users expect</li>
+</ul>
+<h3 id="Technical-Debt-Reduction"><a href="#Technical-Debt-Reduction" class="headerlink" title="Technical Debt Reduction"></a>Technical Debt Reduction</h3><ul>
+<li><strong>Architectural Completeness</strong>: All tools now have complete event handling</li>
+<li><strong>Maintainability</strong>: Clear code structure and documentation</li>
+<li><strong>Extensibility</strong>: Laid foundation for future tool enhancements</li>
+</ul>
+<h3 id="Knowledge-Accumulation"><a href="#Knowledge-Accumulation" class="headerlink" title="Knowledge Accumulation"></a>Knowledge Accumulation</h3><ul>
+<li><strong>Deep Understanding</strong>: Gained in-depth understanding of BlockSuite tool system</li>
+<li><strong>Complete Documentation</strong>: Provided detailed technical documentation for the team</li>
+<li><strong>Best Practices</strong>: Established standard patterns for tool development</li>
+</ul>
+<h2 id="Future-Improvement-Suggestions"><a href="#Future-Improvement-Suggestions" class="headerlink" title="Future Improvement Suggestions"></a>Future Improvement Suggestions</h2><h3 id="Short-term-Optimizations"><a href="#Short-term-Optimizations" class="headerlink" title="Short-term Optimizations"></a>Short-term Optimizations</h3><ol>
+<li><strong>Performance Monitoring</strong>: Add performance monitoring to track event handling overhead</li>
+<li><strong>Unit Testing</strong>: Add automated tests for enhanced functionality</li>
+<li><strong>User Feedback</strong>: Collect user feedback on new features</li>
+</ol>
+<h3 id="Long-term-Planning"><a href="#Long-term-Planning" class="headerlink" title="Long-term Planning"></a>Long-term Planning</h3><ol>
+<li><strong>Tool Standardization</strong>: Apply this enhancement pattern to other tools</li>
+<li><strong>System Refactoring</strong>: Consider providing default interactivity integration at BaseTool level</li>
+<li><strong>Documentation Maintenance</strong>: Continuously update technical documentation</li>
+</ol>
+<h2 id="File-List"><a href="#File-List" class="headerlink" title="File List"></a>File List</h2><h3 id="Modified-Files"><a href="#Modified-Files" class="headerlink" title="Modified Files"></a>Modified Files</h3><ul>
+<li><code>blocksuite/affine/gfx/pointer/src/tools/pan-tool.ts</code> - Main enhancement implementation</li>
+</ul>
+<h3 id="Temporary-Debug-Files-Cleaned"><a href="#Temporary-Debug-Files-Cleaned" class="headerlink" title="Temporary Debug Files (Cleaned)"></a>Temporary Debug Files (Cleaned)</h3><ul>
+<li><code>blocksuite/framework/std/src/gfx/tool/tool-controller.ts</code> - Added debug logs (removed)</li>
+<li><code>blocksuite/affine/blocks/surface/src/tool/default-tool.ts</code> - Added debug logs (removed)</li>
+</ul>
+<h3 id="Documentation-Files"><a href="#Documentation-Files" class="headerlink" title="Documentation Files"></a>Documentation Files</h3><ul>
+<li><a href="./tool-switching-mechanism.md">Tool Switching Mechanism In-depth Analysis</a></li>
+<li><a href="./hand-mode-hover-fix.md">Hand Mode Hover Function Failure Problem Analysis and Solution</a></li>
+<li><a href="./event-routing-interactivity.md">Event Routing and Interactivity System Detailed Explanation</a></li>
+<li><a href="./pan-tool-enhancements.md">PanTool Enhancement Implementation Details</a></li>
+</ul>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>This in-depth research and improvement not only solved the specific Hand Mode problem, but more importantly:</p>
+<ol>
+<li><strong>Gained deep understanding of BlockSuite&#39;s tool architecture</strong></li>
+<li><strong>Established a complete technical documentation system</strong></li>
+<li><strong>Provided reusable solution patterns</strong></li>
+<li><strong>Significantly improved user experience</strong></li>
+</ol>
+<p>The entire process demonstrated systematic thinking, technical depth, and completeness in problem-solving. These documents and code will provide valuable reference for the team&#39;s subsequent development work.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://xsun.work">Alex Sun</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://xsun.work/posts/a66b7bc2/">http://xsun.work/posts/a66b7bc2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener external nofollow noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI-generated/">AI generated</a><a class="post-meta__tags" href="/tags/AI-summary/">AI summary</a><a class="post-meta__tags" href="/tags/Learnify/">Learnify</a><a class="post-meta__tags" href="/tags/Cursor/">Cursor</a><a class="post-meta__tags" href="/tags/Claude-4-Sonnet/">Claude-4-Sonnet</a><a class="post-meta__tags" href="/tags/Hand-Mode/">Hand Mode</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/20250709194019178.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>Sponsor</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付寶"/></a><div class="post-qr-code-desc">支付寶</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/c129cbd5/" title="Learnify - Edgeless Theme Behavior Analysis"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Learnify - Edgeless Theme Behavior Analysis</div></div><div class="info-2"><div class="info-item-1">Learnify - Edgeless Theme Behavior AnalysisProblem DescriptionEdgeless background color behaves inconsistently between edit mode and preview mode:  Edit Mode: When users create an edgeless in light mode and switch to dark mode, the background remains white Preview Mode: Shared read-only preview correctly follows the current theme color  Root Cause1. Different Theme Extension ImplementationsEdit Mode - AffineThemeExtension (/packages/frontend/core/src/blocksuite/view-extensions/theme/theme.ts)...</div></div></div></a><a class="pagination-related" href="/posts/za502868/" title="How to Update Teamcenter BMIDE"><img class="cover" src="https://cdn.jsdelivr.net/gh/xionsun/file@main//hexo/20241211230534897.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">How to Update Teamcenter BMIDE</div></div><div class="info-2"><div class="info-item-1">How to Update Teamcenter BMIDEUpdate Data Model1. Open Teamcenter Environment Manager2. Select &quot;Configuration Manager&quot; 3. Select &quot;Maintain Existing Configuration&quot; 4. Select Your Existing Configuration 5. Select &quot;Update Database (Full Model)&quot; ⚠️Please close all TC services before updating, including two-tier clients, four-tier clients, AWC server, etc.   6. Enter Username and Password 7. Select Update Template Select &quot;Browse&quot; file  Set file type to &quot...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/posts/ca55133e/" title="Learnify - Tool Switching Mechanism"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-09</div><div class="info-item-2">Learnify - Tool Switching Mechanism</div></div><div class="info-2"><div class="info-item-1">Learnify - In-depth Analysis of Tool Switching MechanismOverviewThis document provides a detailed analysis of the core mechanism for tool switching in BlockSuite, with a particular focus on the full process of switching from DefaultTool to PanTool. Core Components1. ToolController (blocksuite/framework/std/src/gfx/tool/tool-controller.ts)ToolController is the core class responsible for managing tools, including registration, switching, and event routing. Key MethodsetTool&lt;T extends BaseToo...</div></div></div></a><a class="pagination-related" href="/posts/707751bc/" title="Learnify - Conversation History - Hand mode behavior and hover issue"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/cursor-prompts.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-09</div><div class="info-item-2">Learnify - Conversation History - Hand mode behavior and hover issue</div></div><div class="info-2"><div class="info-item-1">Learnify - Hand mode behavior and hover issueExported on 2025&#x2F;7&#x2F;7 at GMT+10 20:45:55 from Cursor (1.2.1)  User @default-tool-button.ts When switching to Hand Mode, what behaviors are triggered? Why does the mouse become unable to hover?  Cursor Let me analyze what behaviors are triggered when switching to Hand Mode and the reasons behind the mouse hover issue. [[memory:130323]] 123456disposables.add(  effect(() =&gt; &#123;    const value = this.gfx.tool.currentToolOption$.value;   ...</div></div></div></a><a class="pagination-related" href="/posts/c129cbd5/" title="Learnify - Edgeless Theme Behavior Analysis"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-09</div><div class="info-item-2">Learnify - Edgeless Theme Behavior Analysis</div></div><div class="info-2"><div class="info-item-1">Learnify - Edgeless Theme Behavior AnalysisProblem DescriptionEdgeless background color behaves inconsistently between edit mode and preview mode:  Edit Mode: When users create an edgeless in light mode and switch to dark mode, the background remains white Preview Mode: Shared read-only preview correctly follows the current theme color  Root Cause1. Different Theme Extension ImplementationsEdit Mode - AffineThemeExtension (/packages/frontend/core/src/blocksuite/view-extensions/theme/theme.ts)...</div></div></div></a><a class="pagination-related" href="/posts/d927d254/" title="Learnify - Event Routing and Interactivity System Analysis"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-09</div><div class="info-item-2">Learnify - Event Routing and Interactivity System Analysis</div></div><div class="info-2"><div class="info-item-1">Learnify - Event Routing and Interactivity System AnalysisOverviewThis document provides an in-depth analysis of the event routing mechanism and Interactivity system in BlockSuite, explaining how they work together to handle complex user interactions, particularly hover and click functionalities in mind maps. Event Routing ArchitectureOverall Flow12345678910graph TD    A[User Operation] --&gt; B[Browser Native Event]    B --&gt; C[GfxViewEventManager]    C --&gt; D[ToolController.invokeToolHa...</div></div></div></a><a class="pagination-related" href="/posts/e8b2138a/" title="Learnify - Mind Map Node Collapse&#x2F;Expand Button"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-09</div><div class="info-item-2">Learnify - Mind Map Node Collapse&#x2F;Expand Button</div></div><div class="info-2"><div class="info-item-1">Learnify - Mind Map Node Collapse&#x2F;Expand ButtonOverviewA circular button appears on hover over mind map nodes that have children, allowing users to collapse&#x2F;expand node branches. Key FilesMain Logic Location: /blocksuite/affine/gfx/mindmap/src/view/view.ts Class: MindMapView  Key Methods _initCollapseButtons() - Initializes collapse buttons for all nodes _updateCollapseButton() - Creates&#x2F;updates individual collapse buttons _updateButtonVisibility() (lines 431-461) - Controls bu...</div></div></div></a><a class="pagination-related" href="/posts/b43d01ac/" title="Learnify - Hand Mode Hover Functionality Issue Analysis and Solution"><img class="cover" src="https://cdn.jsdelivr.net/gh/a1exsun/file@main/hexo/claude-code.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="fas fa-history fa-fw"></i> 2025-07-09</div><div class="info-item-2">Learnify - Hand Mode Hover Functionality Issue Analysis and Solution</div></div><div class="info-2"><div class="info-item-1">Learnify - Hand Mode Hover Functionality Issue Analysis and SolutionProblem DescriptionWhen users switch from the default Select tool to Hand Mode (pan tool), the following issues occur:  Complete hover functionality failure: No visual feedback when hovering over mind map nodes Collapse buttons invisible: Expand&#x2F;collapse buttons for mind map nodes cannot be displayed Cursor doesn&#39;t change: Cursor doesn&#39;t change to pointer when hovering over interactive elements Click operations f...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#BlockSuite-Tool-System-In-depth-Research-and-Hand-Mode-Enhancement"><span class="toc-text">BlockSuite Tool System In-depth Research and Hand Mode Enhancement</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Project-Overview"><span class="toc-text">Project Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Problem-Background"><span class="toc-text">Problem Background</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Initial-Problem"><span class="toc-text">Initial Problem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Impact-Scope"><span class="toc-text">Impact Scope</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Research-Process"><span class="toc-text">Research Process</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Phase-1-Problem-Analysis-%F0%9F%94%8D"><span class="toc-text">Phase 1: Problem Analysis 🔍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Phase-2-Solution-Exploration-%F0%9F%92%A1"><span class="toc-text">Phase 2: Solution Exploration 💡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Phase-3-Implementation-and-Optimization-%F0%9F%9A%80"><span class="toc-text">Phase 3: Implementation and Optimization 🚀</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Technical-Documentation"><span class="toc-text">Technical Documentation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Core-Documentation"><span class="toc-text">Core Documentation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Supplementary-Documentation"><span class="toc-text">Supplementary Documentation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-Technical-Breakthroughs"><span class="toc-text">Key Technical Breakthroughs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Deep-Understanding-of-Tool-Switching-Mechanism"><span class="toc-text">1. Deep Understanding of Tool Switching Mechanism</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Correct-Use-of-Interactivity-System"><span class="toc-text">2. Correct Use of Interactivity System</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Complete-Event-Handling-Coverage"><span class="toc-text">3. Complete Event Handling Coverage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Results-Validation"><span class="toc-text">Results Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Functionality-Test-Checklist-%E2%9C%85"><span class="toc-text">Functionality Test Checklist ✅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Performance-Testing"><span class="toc-text">Performance Testing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Compatibility-Verification"><span class="toc-text">Compatibility Verification</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lessons-Learned"><span class="toc-text">Lessons Learned</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Technical-Insights"><span class="toc-text">Technical Insights</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Architecture-Understanding"><span class="toc-text">Architecture Understanding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debugging-Techniques"><span class="toc-text">Debugging Techniques</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Best-Practices-Summary"><span class="toc-text">Best Practices Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tool-Development"><span class="toc-text">Tool Development</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debugging-Methods"><span class="toc-text">Debugging Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Code-Quality"><span class="toc-text">Code Quality</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Impact-and-Value"><span class="toc-text">Impact and Value</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Experience-Improvement"><span class="toc-text">User Experience Improvement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Technical-Debt-Reduction"><span class="toc-text">Technical Debt Reduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Knowledge-Accumulation"><span class="toc-text">Knowledge Accumulation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Future-Improvement-Suggestions"><span class="toc-text">Future Improvement Suggestions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Short-term-Optimizations"><span class="toc-text">Short-term Optimizations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Long-term-Planning"><span class="toc-text">Long-term Planning</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#File-List"><span class="toc-text">File List</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modified-Files"><span class="toc-text">Modified Files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Temporary-Debug-Files-Cleaned"><span class="toc-text">Temporary Debug Files (Cleaned)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Documentation-Files"><span class="toc-text">Documentation Files</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2023 - 2025 By Alex Sun</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
